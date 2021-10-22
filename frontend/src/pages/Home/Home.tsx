@@ -23,8 +23,8 @@ const Home = () => {
     <div className="App">
       <div>
         <span>Switch language</span>
-        <span onClick={() => changeLanguage('en')}>{t('languages.en')}</span>
         <span onClick={() => changeLanguage('de')}>{t('languages.de')}</span>
+        <span onClick={() => changeLanguage('en')}>{t('languages.en')}</span>
       </div>
 
       <div style={{ marginBottom: '50px' }}>
