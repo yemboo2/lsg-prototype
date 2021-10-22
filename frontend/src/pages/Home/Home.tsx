@@ -1,20 +1,19 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { ERoutes } from '../../routes/types';
 import i18n from '../../services/i18n';
 
-interface IHomeProps extends RouteComponentProps {}
+// interface IHomeProps extends RouteComponentProps {}
 
-const Home = ({ history }: IHomeProps) => {
+const Home = () => {
   const [count, setCount] = useState<number>(0);
 
   const { t } = useTranslation();
-  console.log('t ', t);
 
   const onClick = () => {
-    setCount((prev) => (prev += 1));
+    setCount((prev) => prev + 1);
   };
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -32,7 +31,9 @@ const Home = ({ history }: IHomeProps) => {
         <Link to={ERoutes.ONBOARDING}>No sequence yet? Let's get started.</Link>
       </div>
       {count !== 0 && <p>You clicked me {count} times.</p>}
-      <button onClick={onClick}>{t('click-me')}</button>
+      <button type="button" onClick={onClick}>
+        {t('click-me')}
+      </button>
     </div>
   );
 };
