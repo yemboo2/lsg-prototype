@@ -6,6 +6,8 @@ Start by installing the dependencies.
 
 ```bash
 $ npm install
+
+& npm install commitizen -g
 ```
 
 ## Commands
