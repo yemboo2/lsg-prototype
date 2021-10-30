@@ -1,3 +1,3 @@
 {
-    "*.(js|ts|jsx|tsx)": "eslint"
+    "*.(ts|tsx)": "cd frontend && eslint"
 }
