@@ -5,7 +5,7 @@ const RouterOutlet = () => (
   <BrowserRouter>
     <Switch>
       {routes.map((route) => (
-        <Route path={route.path} component={route.component} />
+        <Route path={route.path} key={route.path} component={route.component} />
       ))}
     </Switch>
   </BrowserRouter>

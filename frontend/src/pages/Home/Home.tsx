@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 
 import { ERoutes } from '../../routes/types';
 import i18n from '../../services/i18n';
+import Test1 from './testZustand/Test1';
+import Test2 from './testZustand/Test2';
+import Test3 from './testZustand/Test3';
 
 // interface IHomeProps extends RouteComponentProps {}
 
@@ -34,6 +37,10 @@ const Home = () => {
       <button type="button" onClick={onClick}>
         {t('click-me')}
       </button>
+
+      <Test1 />
+      <Test2 />
+      <Test3 />
     </div>
   );
 };
