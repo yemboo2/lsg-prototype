@@ -1,13 +1,14 @@
-import * as React from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
 
 import RouterOutlet from '../routes/RouterOutlet';
 
 import './App.css';
 
 const App = () => (
-  <div>
+  // Optionally add a theme here
+  <ChakraProvider>
     <RouterOutlet />
-  </div>
+  </ChakraProvider>
 );
 
 export default App;
