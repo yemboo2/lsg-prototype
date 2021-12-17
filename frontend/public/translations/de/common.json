@@ -1,7 +1,83 @@
 {
-  "click-me": "Klick mich!",
   "languages": {
     "en": "Englisch",
     "de": "Deutsch"
+  },
+  "onboarding": {
+    "button": {
+      "back": "Zurück",
+      "next": "Weiter",
+      "submit": "Auf geht's"
+    },
+    "intro": {
+      "headline": "Einführung"
+    },
+    "arrangement": {
+      "headline": "Anordnung",
+      "category": {
+        "work": "Arbeit",
+        "activity": "Bewegung",
+        "mental": "Mental"
+      }
+    },
+    "duration": {
+      "headline": "Dauer"
+    },
+    "physical-activities": {
+      "headline": "Physische Aktivitäten"
+    },
+    "physical-priorities": {
+      "headline": "Prioritäten physischer Aktivitäten"
+    },
+    "mental-activities": {
+      "headline": "Mentale Aktivitäten"
+    },
+    "mental-priorities": {
+      "headline": "Prioritäten mentaler Aktivitäten"
+    },
+    "naming": {
+      "headline": "Name",
+      "description": "Gib deiner Sequenz einen Namen:",
+      "placeholder": "\"Meine erste Sequence\""
+    },
+    "review": {
+      "headline": "Deine erste Sequence"
+    }
+  },
+  "home": {
+    "heading": "Verwalte deine Sequenzen",
+    "chooseRep": "Wähle eine ganze Sequenze oder nur einen Teil:",
+    "scheduleBreak": "Plane eine Pause am Ende ein",
+    "startNow": "Jetzt starten",
+    "cancle": "Abbrechen",
+    "sequence": {
+      "select-placeholder": "Wähle eine Sequenz",
+      "or": "oder",
+      "create": "Erstelle eine Sequence"
+    }
+  },
+  "now-block": {
+    "snooze": "1min Schlummern",
+    "extend": "1min Verlängern"
+  },
+  "category": {
+    "work": "Deep Work",
+    "activity": "Bewegung",
+    "mental": "Mental",
+    "break": "Pause"
+  },
+  "activities": {
+    "pushUps": "Liegestütze",
+    "taiChi": "Thai Chi",
+    "juggling": "Jonglieren",
+    "dancing": "Tanzen",
+    "chore": "Haushaltsarbeit",
+    "guitar": "Gitarre spielen",
+
+    "boxBreathing": "4x4 Atmung",
+    "qiGong": "Qi-Gong",
+    "meditation": "Meditation",
+    "gratitude": "Dankbarkeit",
+    "mantras": "Mantra sprechen"
   }
 }
