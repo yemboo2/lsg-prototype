@@ -1,7 +1,84 @@
 {
-  "click-me": "Click me!",
   "languages": {
     "en": "English",
     "de": "German"
+  },
+  "onboarding": {
+    "button": {
+      "back": "Back",
+      "next": "Next",
+      "submit": "Let's go"
+    },
+    "intro": {
+      "headline": "Introduction"
+    },
+    "arrangement": {
+      "headline": "Arrangement",
+      "category": {
+        "work": "Work",
+        "activity": "Activity",
+        "mental": "Mental"
+      }
+    },
+    "duration": {
+      "headline": "Duration"
+    },
+    "physical-activities": {
+      "headline": "Physical activities"
+    },
+    "physical-priorities": {
+      "headline": "Physical activity priorities"
+    },
+    "mental-activities": {
+      "headline": "Mental activities"
+    },
+    "mental-priorities": {
+      "headline": "Mental activity priorities"
+    },
+    "naming": {
+      "headline": "Name",
+      "description": "Think of a name for your sequence:",
+      "placeholder": "\"My first sequence\""
+    },
+    "review": {
+      "headline": "Your first sequence"
+    }
+  },
+  "home": {
+    "heading": "Manage your Sequences",
+    "create-sequence": "Create a sequence",
+    "chooseRep": "Choose a whole sequence or only a fraction:",
+    "scheduleBreak": "Schedule a break at the end",
+    "startNow": "Start now",
+    "cancle": "Cancle",
+    "sequence": {
+      "select-placeholder": "Select a sequence",
+      "or": "or",
+      "create": "Create a sequence"
+    }
+  },
+  "now-block": {
+    "snooze": "Snooze 1min",
+    "extend": "Extend 1min"
+  },
+  "category": {
+    "work": "Deep Work",
+    "activity": "Activity",
+    "mental": "Mental",
+    "break": "Break"
+  },
+  "activities": {
+    "pushUps": "Push-Ups",
+    "taiChi": "Tai Chi",
+    "juggling": "Juggling",
+    "dancing": "Dancing",
+    "chore": "Chore",
+    "guitar": "Play guitar",
+
+    "boxBreathing": "Box breathing",
+    "qiGong": "Qi-Gong",
+    "meditation": "Meditation",
+    "gratitude": "Gratitude",
+    "mantras": "Mantra speaking"
   }
 }
