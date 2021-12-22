@@ -9,9 +9,11 @@ interface IOnboardingZustand {
   name: string;
   blockOrder: IBlockOrder;
   durations: IDurations;
+  recap: boolean;
   setName: (name: string) => void;
   setBlockOrder: (blockOrder: IBlockOrder) => void;
   setDuration: (category: ECategory, duration: number) => void;
+  toggleRecap: () => void;
 }
 
 const setDuration = (set: SetState<object>) => (category: ECategory, duration: number) =>
@@ -32,16 +34,20 @@ export const useOnboarding = create(
       } as IBlockOrder,
       durations: PRESETS[EPresetType.VAR1],
       name: '',
+      recap: true,
       setName: (name: string) => set({ name }),
       setBlockOrder: (blockOrder: IBlockOrder) => set({ blockOrder }),
       setDuration: setDuration(set),
+      toggleRecap: () => set((state: IOnboardingZustand) => ({ recap: !state.recap })),
     } as IOnboardingZustand)
 );
 
 export const selectName = (state: IOnboardingZustand) => state.name;
 export const selectBlockOrder = (state: IOnboardingZustand) => state.blockOrder;
 export const selectDurations = (state: IOnboardingZustand) => state.durations;
+export const selectRecap = (state: IOnboardingZustand) => state.recap;
 
 export const selectSetName = (state: IOnboardingZustand) => state.setName;
 export const selectSetBlockOrder = (state: IOnboardingZustand) => state.setBlockOrder;
 export const selectSetDuration = (state: IOnboardingZustand) => state.setDuration;
+export const selectToggleRecap = (state: IOnboardingZustand) => state.toggleRecap;

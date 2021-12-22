@@ -183,11 +183,20 @@ const StepDuration = () => {
 
       <div style={{ marginTop: '3vh' }}>
         <Sequence
-          subSequence={{
-            first: { type: blockOrder.first, duration: getDuration(blockOrder.first) },
-            second: { type: blockOrder.second, duration: getDuration(blockOrder.second) },
-            third: { type: blockOrder.third, duration: getDuration(blockOrder.third) },
-          }}
+          subSequences={[
+            {
+              position: 0,
+              block: { type: blockOrder.first, duration: getDuration(blockOrder.first) },
+            },
+            {
+              position: 1,
+              block: { type: blockOrder.second, duration: getDuration(blockOrder.second) },
+            },
+            {
+              position: 2,
+              block: { type: blockOrder.third, duration: getDuration(blockOrder.third) },
+            },
+          ]}
           breakDuration={breakDuration}
         />
       </div>

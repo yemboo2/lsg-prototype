@@ -41,7 +41,8 @@
       "placeholder": "\"My first sequence\""
     },
     "review": {
-      "headline": "Your first sequence"
+      "headline": "Your first sequence",
+      "recap": "Add a recap block after a deep work block (recommended)"
     }
   },
   "home": {
@@ -65,7 +66,8 @@
     "work": "Deep Work",
     "activity": "Activity",
     "mental": "Mental",
-    "break": "Break"
+    "break": "Break",
+    "recap": "Recap"
   },
   "activities": {
     "pushUps": "Push-Ups",

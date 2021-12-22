@@ -18,10 +18,12 @@ import StepArrangment from './components/StepArrangement/StepArrangement';
 // import StepActivities from './components/StepActivities/StepActivities';
 // import { MENTAL_ACTIVITIES, PHYSICAL_ACTIVITIES } from './components/StepActivities/constants';
 // import StepPriority from './components/StepPriority/StepPriority';
-import { selectBlockOrder, selectDurations, selectName, useOnboarding } from './state';
+import { selectBlockOrder, selectDurations, selectName, selectRecap, useOnboarding } from './state';
 import { ISequence } from '../../interfaces/sequence-interface';
 import StepName from './components/StepName/StepName';
 import BackButton from '../../components/BackButton/BackButton';
+import { ECategory } from '../../enums/category';
+import StepSummary from './components/StepSummary/StepSummary';
 
 const getDefaultSequenceTitle = () => `Sequence${Math.floor(Math.random() * 89 + 10)}`;
 
@@ -36,6 +38,7 @@ const Onboarding = () => {
   const blockOrder = useOnboarding(selectBlockOrder);
   const durations = useOnboarding(selectDurations);
   const name = useOnboarding(selectName);
+  const recap = useOnboarding(selectRecap);
   const userSequences = useUser(selectSequences);
 
   const goBack = useCallback(() => {
@@ -67,14 +70,26 @@ const Onboarding = () => {
     const sequence: ISequence = {
       id: guid(),
       title: name !== '' ? name : getDefaultSequenceTitle(),
-      subsequence: {
-        first: { type: blockOrder.first, duration: durations[blockOrder.first] },
-        second: { type: blockOrder.second, duration: durations[blockOrder.second] },
-        third: { type: blockOrder.third, duration: durations[blockOrder.third] },
-      },
+      subsequences: [
+        { position: 0, block: { type: blockOrder.first, duration: durations[blockOrder.first] } },
+        { position: 0, block: { type: blockOrder.second, duration: durations[blockOrder.second] } },
+        { position: 0, block: { type: blockOrder.third, duration: durations[blockOrder.third] } },
+      ],
       break: durations.break,
-      recap: 1, // TODO: let to be defined by the user
     };
+
+    if (recap) {
+      const workIndex = sequence.subsequences.findIndex((ss) => ss.block.type === ECategory.WORK);
+      sequence.subsequences.splice(workIndex + 1, 0, {
+        position: 0,
+        block: { type: ECategory.RECAP, duration: 1 },
+      });
+    }
+
+    for (let i = 0; i < sequence.subsequences.length; i += 1) {
+      sequence.subsequences[i].position = i;
+    }
+
     addUserSequence(sequence);
 
     // Set cookies
@@ -82,7 +97,7 @@ const Onboarding = () => {
     setUserSequenceCookie([...userSequences, sequence]);
 
     goBack();
-  }, [name, blockOrder, durations]);
+  }, [name, blockOrder, durations, recap]);
 
   return (
     <Container>
@@ -254,11 +269,7 @@ const Onboarding = () => {
             { type: EOnboardingButtonType.SUBMIT, onClick: onSubmit },
           ]}
         >
-          <>
-            <Text color="white" mb="10vh">
-              Summary text & figures
-            </Text>
-          </>
+          <StepSummary />
         </OnboardingStep>
       </div>
     </Container>
