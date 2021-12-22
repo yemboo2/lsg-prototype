@@ -41,7 +41,8 @@
       "placeholder": "\"Meine erste Sequence\""
     },
     "review": {
-      "headline": "Deine erste Sequence"
+      "headline": "Deine erste Sequence",
+      "recap": "Wiederholungs-Block nach Deep-Work-Block hinzufügen (empfohlen)"
     }
   },
   "home": {
@@ -64,7 +65,8 @@
     "work": "Deep Work",
     "activity": "Bewegung",
     "mental": "Mental",
-    "break": "Pause"
+    "break": "Pause",
+    "recap": "Wiederholung"
   },
   "activities": {
     "pushUps": "Liegestütze",

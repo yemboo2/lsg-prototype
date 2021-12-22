@@ -44,6 +44,7 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
   const intervalRef = useRef<number>();
   const transitionAvailableRef = useRef<boolean>(false);
   const transitionTimeoutRef = useRef<number>();
+  const endTime = useRef<number | undefined>();
 
   /**
    * Init audio.
@@ -63,16 +64,17 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
 
   const start = useCallback(() => {
     intervalRef.current = window.setInterval(() => {
-      setTime((prev) => (prev !== undefined ? prev - 1 : undefined));
+      setTime(endTime && endTime.current ? endTime.current - Math.floor(Date.now() / 1000) : 0);
     }, 1000);
   }, []);
 
   const resume = useCallback(() => {
     if (isTransition) return; // No pause-play functionnality in the transition state
 
+    if (endTime) endTime.current = Math.floor(Date.now() / 1000) + (time || 0);
     setIsPaused(false);
     start();
-  }, [isTransition]);
+  }, [isTransition, time]);
 
   const pause = useCallback(() => {
     if (isTransition) return; // No pause-play functionnality in the transition state
@@ -82,19 +84,22 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
   }, [isTransition]);
 
   const snoozeExtend = useCallback(() => {
-    setTime((prev) => (prev || 0) + SNOOZE_EXTEND_TIME);
+    if (endTime && endTime.current) endTime.current += SNOOZE_EXTEND_TIME;
     if (transitionTimeoutRef && transitionTimeoutRef.current) {
       window.clearTimeout(transitionTimeoutRef.current);
       transitionTimeoutRef.current = undefined;
     }
-  }, [setTime]);
+  }, []);
 
   const timesUp = useCallback(() => {
     setIsTransition(true);
     transitionTimeoutRef.current = window.setTimeout(() => {
       setIsTransition(false);
       setRunningChunk(chunk);
-      setTime(chunk ? chunk.duration * 60 - TRANSITION_TIMEOUT : undefined);
+      if (endTime && endTime.current) {
+        endTime.current = chunk ? endTime.current + chunk.duration * 60 : undefined;
+        setTime(endTime && endTime.current ? endTime.current - Math.floor(Date.now() / 1000) : 0);
+      }
       transitionTimeoutRef.current = undefined;
     }, TRANSITION_TIMEOUT * 1000);
   }, [chunk]);
@@ -107,7 +112,10 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
     if (!transitionAvailableRef || !transitionAvailableRef.current) {
       transitionAvailableRef.current = true;
       setRunningChunk(chunk);
-      setTime(chunk ? chunk.duration * 60 : undefined);
+      if (endTime) {
+        endTime.current = chunk ? Math.floor(Date.now() / 1000) + chunk.duration * 60 : undefined;
+        setTime(endTime && endTime.current ? endTime.current - Math.floor(Date.now() / 1000) : 0);
+      }
     }
 
     if (chunk && !intervalRef?.current) {
@@ -205,18 +213,17 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
           >
             {time !== undefined && secondsToString(time)}
           </Text>
-          {isTransition ||
-            (time && time < EXTEND_TRESHOLD && (
-              <Button
-                className="snooze"
-                onClick={snoozeExtend}
-                variant="outline"
-                color="white"
-                _hover={{ color: 'black', bg: 'white' }}
-              >
-                {t(`now-block.${isTransition ? 'snooze' : 'extend'}`)}
-              </Button>
-            ))}
+          {(isTransition || (time !== undefined && time < EXTEND_TRESHOLD)) && (
+            <Button
+              className="snooze"
+              onClick={snoozeExtend}
+              variant="outline"
+              color="white"
+              _hover={{ color: 'black', bg: 'white' }}
+            >
+              {t(`now-block.${isTransition ? 'snooze' : 'extend'}`)}
+            </Button>
+          )}
           {activity && (
             <Text fontSize="md" color="white" width="100%" textAlign="center" mt="3vh   ">
               {activity}

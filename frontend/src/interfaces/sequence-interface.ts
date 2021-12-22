@@ -5,18 +5,14 @@ export interface IBlock {
   duration: number; // minutes
 }
 
-export type ISubSequenceKey = 'first' | 'second' | 'third';
-
-export interface ISubSequence {
-  first: IBlock;
-  second: IBlock;
-  third: IBlock;
+export interface ISequenceBlock {
+  position: number;
+  block: IBlock;
 }
 
 export interface ISequence {
   id: string;
   title: string;
-  subsequence: ISubSequence;
+  subsequences: ISequenceBlock[];
   break: number;
-  recap?: number;
 }

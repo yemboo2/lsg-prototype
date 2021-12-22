@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Select } from '@chakra-ui/react';
 import { Heading, Stack, Text } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
@@ -45,7 +45,7 @@ const Home = () => {
 
   const sequences: ISequence[] = useMemo(() => [...userSequences, ...SEQUENCES], [userSequences]);
 
-  const onButtonPress = useCallback(() => {
+  const onStartCancleButtonPress = useCallback(() => {
     if (isSequenceActive) {
       setIsSequenceActive(false);
       setChunkCounter(undefined);
@@ -53,7 +53,9 @@ const Home = () => {
     } else {
       setIsSequenceActive(true);
       setChunkCounter(0);
-      setCurrentChunk(selectedSequence?.subsequence.first);
+      setCurrentChunk(
+        selectedSequence?.subsequences ? selectedSequence.subsequences[0].block : undefined
+      );
     }
   }, [isSequenceActive]);
 
@@ -80,6 +82,8 @@ const Home = () => {
   }, [currentChunk]);
 
   useEffect(() => {
+    if (!selectedSequence) return;
+
     // Sequence not active
     if (
       chunkCounter === undefined ||
@@ -93,21 +97,14 @@ const Home = () => {
 
     // Break
     if (chunkCounter === 3 * reps) {
-      setCurrentChunk({ type: ECategory.BREAK, duration: selectedSequence!.break });
+      setCurrentChunk({ type: ECategory.BREAK, duration: selectedSequence.break });
       return;
     }
 
-    switch (chunkCounter % 3) {
-      case 1:
-        setCurrentChunk(selectedSequence?.subsequence.second);
-        break;
-      case 2:
-        setCurrentChunk(selectedSequence?.subsequence.third);
-        break;
-      default:
-        setCurrentChunk(selectedSequence?.subsequence.first);
-    }
-  }, [chunkCounter, reps, scheduleBreak]);
+    setCurrentChunk(
+      selectedSequence.subsequences[chunkCounter % selectedSequence.subsequences.length].block
+    );
+  }, [chunkCounter, reps, scheduleBreak, selectedSequence]);
 
   return (
     <Container>
@@ -178,7 +175,7 @@ const Home = () => {
         <div className="sequence">
           {selectedSequence && (
             <Sequence
-              subSequence={selectedSequence.subsequence}
+              subSequences={selectedSequence.subsequences}
               breakDuration={scheduleBreak ? selectedSequence.break : undefined}
               reps={reps}
             />
@@ -196,7 +193,7 @@ const Home = () => {
         )}
         <Button
           variant="outline"
-          onClick={onButtonPress}
+          onClick={onStartCancleButtonPress}
           border="2px"
           color="white"
           _hover={{ color: 'black', bg: 'white' }}

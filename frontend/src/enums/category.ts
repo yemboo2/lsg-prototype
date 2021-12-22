@@ -3,5 +3,5 @@ export enum ECategory {
   ACTIVITY = 'activity',
   MENTAL = 'mental',
   BREAK = 'break',
-  // RECAP = 'recap',
+  RECAP = 'recap',
 }
