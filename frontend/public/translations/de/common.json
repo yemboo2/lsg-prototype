@@ -37,7 +37,7 @@
     },
     "naming": {
       "headline": "Name",
-      "description": "Gib deiner Sequenz einen Namen:",
+      "description": "Du hast die Möglichkeit mehrere eigene Sequenzen zu erstellen. Deswegen ist es sinnvoll einen eindeutigen Namen zu vergeben:",
       "placeholder": "\"Meine erste Sequence\""
     },
     "review": {

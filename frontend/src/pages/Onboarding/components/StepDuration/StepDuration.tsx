@@ -111,7 +111,7 @@ const StepDuration = () => {
         colorScheme={CssColors.Category.work}
         defaultValue={PRESETS[PRESET_DEFAULT].work}
         value={workDuration}
-        min={30}
+        min={20}
         max={90}
         width="100%"
         onChange={onWorkDurationChange}
@@ -151,7 +151,7 @@ const StepDuration = () => {
         defaultValue={PRESETS[PRESET_DEFAULT].mental}
         value={mentalDuration}
         min={1}
-        max={10}
+        max={15}
         width="100%"
         onChange={onMentalDurationChange}
       >

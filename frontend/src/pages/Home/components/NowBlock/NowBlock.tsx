@@ -45,13 +45,14 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
   const transitionAvailableRef = useRef<boolean>(false);
   const transitionTimeoutRef = useRef<number>();
   const endTime = useRef<number | undefined>();
+  const chunkFinished = useRef<boolean>(false);
 
   /**
    * Init audio.
    * Callback clears interval.
    */
   useEffect(() => {
-    audioRef.current = new Audio('./audio/timer.mp3');
+    audioRef.current = new Audio('./audio/beep.mp3');
 
     return () => {
       if (intervalRef && intervalRef.current) window.clearInterval(intervalRef.current);
@@ -64,7 +65,11 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
 
   const start = useCallback(() => {
     intervalRef.current = window.setInterval(() => {
-      setTime(endTime && endTime.current ? endTime.current - Math.floor(Date.now() / 1000) : 0);
+      setTime(
+        endTime && endTime.current !== undefined
+          ? endTime.current - Math.floor(Date.now() / 1000)
+          : 0
+      );
     }, 1000);
   }, []);
 
@@ -84,11 +89,16 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
   }, [isTransition]);
 
   const snoozeExtend = useCallback(() => {
-    if (endTime && endTime.current) endTime.current += SNOOZE_EXTEND_TIME;
+    if (endTime && endTime.current !== undefined) endTime.current += SNOOZE_EXTEND_TIME;
+    setTime(
+      endTime && endTime.current !== undefined ? endTime.current - Math.floor(Date.now() / 1000) : 0
+    );
+
     if (transitionTimeoutRef && transitionTimeoutRef.current) {
       window.clearTimeout(transitionTimeoutRef.current);
       transitionTimeoutRef.current = undefined;
     }
+    chunkFinished.current = false;
   }, []);
 
   const timesUp = useCallback(() => {
@@ -96,11 +106,16 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
     transitionTimeoutRef.current = window.setTimeout(() => {
       setIsTransition(false);
       setRunningChunk(chunk);
-      if (endTime && endTime.current) {
+      if (endTime && endTime.current !== undefined) {
         endTime.current = chunk ? endTime.current + chunk.duration * 60 : undefined;
-        setTime(endTime && endTime.current ? endTime.current - Math.floor(Date.now() / 1000) : 0);
+        setTime(
+          endTime && endTime.current !== undefined
+            ? endTime.current - Math.floor(Date.now() / 1000)
+            : 0
+        );
       }
       transitionTimeoutRef.current = undefined;
+      chunkFinished.current = false;
     }, TRANSITION_TIMEOUT * 1000);
   }, [chunk]);
 
@@ -114,7 +129,11 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
       setRunningChunk(chunk);
       if (endTime) {
         endTime.current = chunk ? Math.floor(Date.now() / 1000) + chunk.duration * 60 : undefined;
-        setTime(endTime && endTime.current ? endTime.current - Math.floor(Date.now() / 1000) : 0);
+        setTime(
+          endTime && endTime.current !== undefined
+            ? endTime.current - Math.floor(Date.now() / 1000)
+            : 0
+        );
       }
     }
 
@@ -138,7 +157,24 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
    * and in transistion state fire timesUp.
    */
   useEffect(() => {
-    if (time !== undefined && time === 0) {
+    // We need 'chunkFinished' as additional term here
+    // because if the application is in an inactive
+    // browser-tab its computing is prioritzed lower leading
+    // to a tick taking a bit more than 1000ms. As our logic
+    // is with each tick to calc the difference between now
+    // and the endtime it is possible that at one tick the
+    // calculated time is > 1 (Math.floor leading to 1) an
+    // the next tick the calculated time is < 0 (Math.abs &
+    // Math.floor leading to (-)1) and as a result time is
+    // never 0.
+    if (
+      time !== undefined &&
+      (time === 0 || time === -1) &&
+      chunkFinished &&
+      !chunkFinished.current
+    ) {
+      chunkFinished.current = true;
+
       if (!muted) {
         const audioPromise = audioRef.current.play();
         if (audioPromise !== undefined) {

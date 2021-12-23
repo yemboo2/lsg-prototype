@@ -37,7 +37,7 @@
     },
     "naming": {
       "headline": "Name",
-      "description": "Think of a name for your sequence:",
+      "description": "You can create multiple personal sequences. Hence, it is recommended to assign a suitable name:",
       "placeholder": "\"My first sequence\""
     },
     "review": {

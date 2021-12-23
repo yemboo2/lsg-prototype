@@ -7,7 +7,7 @@ export const SEQUENCES: ISequence[] = [
     title: 'Neijia Sequence',
     break: 15,
     subsequences: [
-      { position: 0, block: { duration: 1, type: ECategory.ACTIVITY } },
+      { position: 0, block: { duration: 5, type: ECategory.ACTIVITY } },
       { position: 1, block: { duration: 1, type: ECategory.MENTAL } },
       { position: 2, block: { duration: 30, type: ECategory.WORK } },
       { position: 3, block: { duration: 1, type: ECategory.RECAP } },
