@@ -84,11 +84,13 @@ const Home = () => {
   useEffect(() => {
     if (!selectedSequence) return;
 
+    const subSequenceLength = selectedSequence.subsequences.length;
+
     // Sequence not active
     if (
       chunkCounter === undefined ||
-      (chunkCounter === 3 * reps && !scheduleBreak) ||
-      chunkCounter > 3 * reps
+      (chunkCounter === subSequenceLength * reps && !scheduleBreak) ||
+      chunkCounter > subSequenceLength * reps
     ) {
       setCurrentChunk(undefined);
       setChunkCounter(undefined);
@@ -96,14 +98,12 @@ const Home = () => {
     }
 
     // Break
-    if (chunkCounter === 3 * reps) {
+    if (chunkCounter === subSequenceLength * reps) {
       setCurrentChunk({ type: ECategory.BREAK, duration: selectedSequence.break });
       return;
     }
 
-    setCurrentChunk(
-      selectedSequence.subsequences[chunkCounter % selectedSequence.subsequences.length].block
-    );
+    setCurrentChunk(selectedSequence.subsequences[chunkCounter % subSequenceLength].block);
   }, [chunkCounter, reps, scheduleBreak, selectedSequence]);
 
   return (

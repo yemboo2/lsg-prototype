@@ -23,6 +23,8 @@ const secondsToString = (seconds: number) => {
   return `${isNegative ? '-' : ''}${mins <= 9 ? '0' : ''}${mins}:${secs <= 9 ? '0' : ''}${secs}`;
 };
 
+// const tickWorker: Worker = new Worker('./workers/tick.js');
+
 interface INowBlockProps {
   chunk?: IBlock;
   activity?: string;
@@ -46,6 +48,7 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
   const transitionTimeoutRef = useRef<number>();
   const endTime = useRef<number | undefined>();
   const chunkFinished = useRef<boolean>(false);
+  const worker = useRef<Worker>();
 
   /**
    * Init audio.
@@ -53,9 +56,22 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
    */
   useEffect(() => {
     audioRef.current = new Audio('./audio/beep.mp3');
+    worker.current = new Worker('./workers/tick.js');
+
+    const eventHander = ($event: MessageEvent) => {
+      if ($event && $event.data)
+        setTime(
+          endTime && endTime.current !== undefined
+            ? endTime.current - Math.floor(Date.now() / 1000)
+            : 0
+        );
+    };
+
+    worker.current.addEventListener('message', eventHander);
 
     return () => {
-      if (intervalRef && intervalRef.current) window.clearInterval(intervalRef.current);
+      worker.current?.removeEventListener('message', eventHander);
+      worker.current?.postMessage({ msg: 'end-tick' });
     };
   }, []);
 
@@ -64,13 +80,7 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
   }, []);
 
   const start = useCallback(() => {
-    intervalRef.current = window.setInterval(() => {
-      setTime(
-        endTime && endTime.current !== undefined
-          ? endTime.current - Math.floor(Date.now() / 1000)
-          : 0
-      );
-    }, 1000);
+    worker.current?.postMessage({ msg: 'start-tick' });
   }, []);
 
   const resume = useCallback(() => {
@@ -85,7 +95,7 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
     if (isTransition) return; // No pause-play functionnality in the transition state
 
     setIsPaused(true);
-    if (intervalRef && intervalRef.current) window.clearInterval(intervalRef.current);
+    worker.current?.postMessage({ msg: 'end-tick' });
   }, [isTransition]);
 
   const snoozeExtend = useCallback(() => {
@@ -157,22 +167,24 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
    * and in transistion state fire timesUp.
    */
   useEffect(() => {
-    // We need 'chunkFinished' as additional term here
-    // because if the application is in an inactive
-    // browser-tab its computing is prioritzed lower leading
-    // to a tick taking a bit more than 1000ms. As our logic
-    // is with each tick to calc the difference between now
-    // and the endtime it is possible that at one tick the
-    // calculated time is > 1 (Math.floor leading to 1) an
-    // the next tick the calculated time is < 0 (Math.abs &
-    // Math.floor leading to (-)1) and as a result time is
-    // never 0.
-    if (
-      time !== undefined &&
-      (time === 0 || time === -1) &&
-      chunkFinished &&
-      !chunkFinished.current
-    ) {
+    /*
+     * TODO: Retest the above logic and get rid of
+     *  it if possible (could be as we now use web-workers
+     * handling the interval/counting/ticking).
+     */
+    /*
+      We need 'chunkFinished' as additional term here
+      because if the application is in an inactive
+      browser-tab its computing is prioritzed lower leading
+      to a tick taking a bit more than 1000ms. As our logic
+      is with each tick to calc the difference between now
+      and the endtime it is possible that at one tick the
+      calculated time is > 1 (Math.floor leading to 1) an
+      the next tick the calculated time is < 0 (Math.abs &
+      Math.floor leading to (-)1) and as a result time is
+      never 0.
+     */
+    if (time !== undefined && time <= 0 && time >= -1 && chunkFinished && !chunkFinished.current) {
       chunkFinished.current = true;
 
       if (!muted) {
@@ -249,7 +261,7 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
           >
             {time !== undefined && secondsToString(time)}
           </Text>
-          {(isTransition || (time !== undefined && time < EXTEND_TRESHOLD)) && (
+          {(isTransition || (time !== undefined && time < EXTEND_TRESHOLD && !isPaused)) && (
             <Button
               className="snooze"
               onClick={snoozeExtend}
