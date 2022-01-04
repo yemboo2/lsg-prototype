@@ -58,7 +58,7 @@ const Home = () => {
         selectedSequence?.subsequences ? selectedSequence.subsequences[0].block : undefined
       );
     }
-  }, [isSequenceActive]);
+  }, [isSequenceActive, selectedSequence]);
 
   const onFinishedChunk = useCallback(() => {
     setChunkCounter((prev) => (prev === undefined ? undefined : prev + 1));
@@ -106,6 +106,9 @@ const Home = () => {
 
     setCurrentChunk(selectedSequence.subsequences[chunkCounter % subSequenceLength].block);
   }, [chunkCounter, reps, scheduleBreak, selectedSequence]);
+
+  console.log('currentChunk ', currentChunk);
+  console.log('chunkCounter', chunkCounter);
 
   return (
     <>
@@ -187,11 +190,7 @@ const Home = () => {
 
           {currentChunk && (
             <div className="now-container">
-              <NowBlock
-                chunk={currentChunk}
-                onFinished={onFinishedChunk}
-                //  activity={`${'Neijia'}`} TODO:
-              />
+              <NowBlock chunk={currentChunk} onFinished={onFinishedChunk} />
             </div>
           )}
           <Button
