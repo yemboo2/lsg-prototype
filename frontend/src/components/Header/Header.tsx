@@ -10,6 +10,8 @@ import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
 import { Container } from './styles';
 import { ERoutes } from '../../routes/types';
 
+const LSG_WEBSITE_URL = 'https://lsg-meta.app/';
+
 const Header = () => {
   const history = useHistory();
   const { t } = useTranslation();
@@ -67,7 +69,7 @@ const Header = () => {
         </Text>
       </div>
       <div className="header-element">
-        <a href="www.google.com" target="_blank" style={{ margin: 'auto' }}>
+        <a href={LSG_WEBSITE_URL} target="_blank" rel="noreferrer" style={{ margin: 'auto' }}>
           <Text className="header-element-text"> {t('header.website')}</Text>
         </a>
       </div>
