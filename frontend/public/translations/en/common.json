@@ -82,5 +82,11 @@
     "meditation": "Meditation",
     "gratitude": "Gratitude",
     "mantras": "Mantra speaking"
+  },
+  "header": {
+    "dashboard": "Dashboard",
+    "createSequence": "Create sequence",
+    "waitForIt": "Wait-for-it list",
+    "website": "Website"
   }
 }

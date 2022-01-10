@@ -1,4 +1,3 @@
-import { Text } from '@chakra-ui/layout';
 import { useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
@@ -21,9 +20,9 @@ import StepArrangment from './components/StepArrangement/StepArrangement';
 import { selectBlockOrder, selectDurations, selectName, selectRecap, useOnboarding } from './state';
 import { ISequence } from '../../interfaces/sequence-interface';
 import StepName from './components/StepName/StepName';
-import BackButton from '../../components/BackButton/BackButton';
 import { ECategory } from '../../enums/category';
 import StepSummary from './components/StepSummary/StepSummary';
+import Header from '../../components/Header/Header';
 
 const getDefaultSequenceTitle = () => `Sequence${Math.floor(Math.random() * 89 + 10)}`;
 
@@ -57,7 +56,7 @@ const Onboarding = () => {
         top = 0.85 * documentHeight + 50;
         break;
       default:
-        top = 0.85 * documentHeight + 50 + (step - 1) * 0.9 * documentHeight;
+        top = 0.85 * documentHeight + 60 + (step - 1) * 0.9 * documentHeight;
     }
 
     document.documentElement.scrollTo({ top, behavior: 'smooth' });
@@ -100,60 +99,61 @@ const Onboarding = () => {
   }, [name, blockOrder, durations, recap]);
 
   return (
-    <Container>
-      <BackButton className="back-page" onGoBack={goBack} />
-      <div
-        ref={(ref) => {
-          refsObj.current[0] = ref;
-        }}
-        className="step-container"
-      >
-        <OnboardingStep
-          headline={t('onboarding.intro.headline')}
-          buttons={[
-            { type: EOnboardingButtonType.NONE, onClick: () => {} },
-            { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(1) },
-          ]}
+    <>
+      <Header />
+      <Container>
+        <div
+          ref={(ref) => {
+            refsObj.current[0] = ref;
+          }}
+          className="step-container"
         >
-          <StepIntro />
-        </OnboardingStep>
-      </div>
+          <OnboardingStep
+            headline={t('onboarding.intro.headline')}
+            buttons={[
+              { type: EOnboardingButtonType.NONE, onClick: () => {} },
+              { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(1) },
+            ]}
+          >
+            <StepIntro />
+          </OnboardingStep>
+        </div>
 
-      <div
-        ref={(ref) => {
-          refsObj.current[1] = ref;
-        }}
-        className="step-container"
-      >
-        <OnboardingStep
-          headline={t('onboarding.arrangement.headline')}
-          buttons={[
-            { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(0) },
-            { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(2) },
-          ]}
+        <div
+          ref={(ref) => {
+            refsObj.current[1] = ref;
+          }}
+          className="step-container"
         >
-          <StepArrangment />
-        </OnboardingStep>
-      </div>
+          <OnboardingStep
+            headline={t('onboarding.arrangement.headline')}
+            buttons={[
+              { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(0) },
+              { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(2) },
+            ]}
+          >
+            <StepArrangment />
+          </OnboardingStep>
+        </div>
 
-      <div
-        ref={(ref) => {
-          refsObj.current[2] = ref;
-        }}
-        className="step-container"
-      >
-        <OnboardingStep
-          headline={t('onboarding.duration.headline')}
-          buttons={[
-            { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(1) },
-            { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(3) },
-          ]}
+        <div
+          ref={(ref) => {
+            refsObj.current[2] = ref;
+          }}
+          className="step-container"
         >
-          <StepDuration />
-        </OnboardingStep>
-      </div>
+          <OnboardingStep
+            headline={t('onboarding.duration.headline')}
+            buttons={[
+              { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(1) },
+              { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(3) },
+            ]}
+          >
+            <StepDuration />
+          </OnboardingStep>
+        </div>
 
-      {/* <div
+        {/* <div
         ref={(ref) => {
           refsObj.current[3] = ref;
         }}
@@ -239,40 +239,41 @@ const Onboarding = () => {
         </OnboardingStep>
       </div> */}
 
-      <div
-        ref={(ref) => {
-          refsObj.current[3] = ref;
-        }}
-        className="step-container"
-      >
-        <OnboardingStep
-          headline={t('onboarding.naming.headline')}
-          buttons={[
-            { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(2) },
-            { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(4) },
-          ]}
+        <div
+          ref={(ref) => {
+            refsObj.current[3] = ref;
+          }}
+          className="step-container"
         >
-          <StepName />
-        </OnboardingStep>
-      </div>
+          <OnboardingStep
+            headline={t('onboarding.naming.headline')}
+            buttons={[
+              { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(2) },
+              { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(4) },
+            ]}
+          >
+            <StepName />
+          </OnboardingStep>
+        </div>
 
-      <div
-        ref={(ref) => {
-          refsObj.current[4] = ref;
-        }}
-        className="step-container"
-      >
-        <OnboardingStep
-          headline={t('onboarding.review.headline')}
-          buttons={[
-            { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(3) },
-            { type: EOnboardingButtonType.SUBMIT, onClick: onSubmit },
-          ]}
+        <div
+          ref={(ref) => {
+            refsObj.current[4] = ref;
+          }}
+          className="step-container"
         >
-          <StepSummary />
-        </OnboardingStep>
-      </div>
-    </Container>
+          <OnboardingStep
+            headline={t('onboarding.review.headline')}
+            buttons={[
+              { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(3) },
+              { type: EOnboardingButtonType.SUBMIT, onClick: onSubmit },
+            ]}
+          >
+            <StepSummary />
+          </OnboardingStep>
+        </div>
+      </Container>
+    </>
   );
 };
 
