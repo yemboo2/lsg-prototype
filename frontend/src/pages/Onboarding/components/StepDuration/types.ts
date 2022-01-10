@@ -10,4 +10,5 @@ export interface IDurations {
   activity: number;
   mental: number;
   break: number;
+  recap: number;
 }

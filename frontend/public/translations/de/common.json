@@ -14,14 +14,12 @@
     },
     "arrangement": {
       "headline": "Anordnung",
-      "category": {
-        "work": "Arbeit",
-        "activity": "Bewegung",
-        "mental": "Mental"
-      }
+      "description": "Zu Beginn werden kannst du die Reihenfolge der einzelnen Blöcke definieren. Die unten stehende Reihenfolge empfehlen wir. Nichtsdestotrotz, kannst du die Anordnung auch durch ziehen und loslassen (drag&drop) verändern."
     },
     "duration": {
-      "headline": "Dauer"
+      "headline": "Dauer",
+      "description": "Jetzt definieren wir die Länge jedes einzelnen Block. Du kannst entweder eine Voreinstellung auswählen oder alles individuell anpassen.",
+      "individual": "Individuell"
     },
     "physical-activities": {
       "headline": "Physische Aktivitäten"
@@ -55,7 +53,8 @@
       "select-placeholder": "Wähle eine Sequenz",
       "or": "oder",
       "create": "Erstelle eine Sequence"
-    }
+    },
+    "totalDuration": "Gesamtzeit: {{time}}"
   },
   "now-block": {
     "snooze": "1min Schlummern",
@@ -66,7 +65,7 @@
     "activity": "Bewegung",
     "mental": "Mental",
     "break": "Pause",
-    "recap": "Wiederholung"
+    "recap": "Recap"
   },
   "activities": {
     "pushUps": "Liegestütze",

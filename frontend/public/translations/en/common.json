@@ -14,14 +14,12 @@
     },
     "arrangement": {
       "headline": "Arrangement",
-      "category": {
-        "work": "Work",
-        "activity": "Activity",
-        "mental": "Mental"
-      }
+      "description": "Lets first define how you want to have your categories arrangent - or in other words - what should follow what. The below is the order we recommend. Although, feel free to change it by using drag&drop."
     },
     "duration": {
-      "headline": "Duration"
+      "headline": "Duration",
+      "description": "Now let's define the duration of the blocks in each category. Feel free to choose a preset or adjust to your individual preferences.",
+      "individual": "individual"
     },
     "physical-activities": {
       "headline": "Physical activities"
@@ -56,7 +54,8 @@
       "select-placeholder": "Select a sequence",
       "or": "or",
       "create": "Create a sequence"
-    }
+    },
+    "totalDuration": "Total duration: {{time}}"
   },
   "now-block": {
     "snooze": "Snooze 1min",

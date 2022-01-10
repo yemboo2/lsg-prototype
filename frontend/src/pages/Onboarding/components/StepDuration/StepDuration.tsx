@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Heading, Stack, Text } from '@chakra-ui/layout';
 import { Radio, RadioGroup } from '@chakra-ui/radio';
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/slider';
+import { useTranslation } from 'react-i18next';
 
 import Sequence from '../../../../components/Sequence/Sequence';
 import { CssColors } from '../../../../styles/colors';
@@ -13,12 +14,15 @@ import { selectBlockOrder, selectSetDuration, useOnboarding } from '../../state'
 const PRESET_DEFAULT = EPresetType.VAR1;
 
 const StepDuration = () => {
+  const { t } = useTranslation();
+
   const [workDuration, setWorkDuration] = useState<number>(PRESETS[PRESET_DEFAULT].work);
   const [activityDuration, setActivityDuration] = useState<number>(
     PRESETS[PRESET_DEFAULT].activity
   );
   const [mentalDuration, setMentalDuration] = useState<number>(PRESETS[PRESET_DEFAULT].mental);
   const [breakDuration, setBreakDuration] = useState<number>(PRESETS[PRESET_DEFAULT].break);
+  const [recapDuration, setRecapDuration] = useState<number>(PRESETS[PRESET_DEFAULT].recap);
   const [preset, setPreset] = useState<EPresetType>(PRESET_DEFAULT);
 
   // zustand
@@ -32,6 +36,7 @@ const StepDuration = () => {
       setActivityDuration(PRESETS[key].activity);
       setMentalDuration(PRESETS[key].mental);
       setBreakDuration(PRESETS[key].break);
+      setRecapDuration(PRESETS[key].recap);
     }
   }, [preset]);
 
@@ -69,6 +74,12 @@ const StepDuration = () => {
     setBreakDuration(value);
   };
 
+  const onRecapDurationChange = (value: number) => {
+    onChange();
+    setDuration(ECategory.RECAP, value);
+    setRecapDuration(value);
+  };
+
   const getDuration = (category: ECategory) => {
     switch (category) {
       case ECategory.ACTIVITY:
@@ -80,11 +91,35 @@ const StepDuration = () => {
     }
   };
 
+  const sequence = [
+    {
+      position: 0,
+      block: { type: blockOrder.first, duration: getDuration(blockOrder.first) },
+    },
+    {
+      position: 1,
+      block: { type: blockOrder.second, duration: getDuration(blockOrder.second) },
+    },
+    {
+      position: 2,
+      block: { type: blockOrder.third, duration: getDuration(blockOrder.third) },
+    },
+  ];
+
+  const workIndex = sequence.findIndex((ss) => ss.block.type === ECategory.WORK);
+  sequence.splice(workIndex + 1, 0, {
+    position: 0,
+    block: { type: ECategory.RECAP, duration: recapDuration },
+  });
+
+  for (let i = 0; i < sequence.length; i += 1) {
+    sequence[i].position = i;
+  }
+
   return (
     <>
       <Text color="white" w="100%" textAlign="left">
-        Now let's define the duration of the blocks in each category. Feel free to choose a prest or
-        adjust to your individual preferences.
+        {t('onboarding.duration.description')}
       </Text>
 
       <RadioGroup onChange={onPresetChanged} value={preset} mt="2vh" w="80%">
@@ -99,13 +134,13 @@ const StepDuration = () => {
             <Text color="white">Var 3</Text>
           </Radio>
           <Radio value={EPresetType.INDIVIDUAL} colorScheme="cyan">
-            <Text color="white">Individual</Text>
+            <Text color="white">{t('onboarding.duration.individual')}</Text>
           </Radio>
         </Stack>
       </RadioGroup>
 
-      <Heading color="white" w="100%" textAlign="left" size="sm" mt="3vh" mb="1vh">
-        {`Work - ${workDuration}min`}
+      <Heading color="white" w="100%" textAlign="left" size="sm" mt="3vh" mb="1%">
+        {`${t(`category.${ECategory.WORK}`)} - ${workDuration}min`}
       </Heading>
       <Slider
         colorScheme={CssColors.Category.work}
@@ -124,8 +159,8 @@ const StepDuration = () => {
         <SliderThumb index={1} />
       </Slider>
 
-      <Heading color="white" w="100%" textAlign="left" size="sm" mt="2vh" mb="1vh">
-        {`Activity - ${activityDuration}min`}
+      <Heading color="white" w="100%" textAlign="left" size="sm" mt="2vh" mb="1%">
+        {`${t(`category.${ECategory.ACTIVITY}`)} - ${activityDuration}min`}
       </Heading>
       <Slider
         colorScheme={CssColors.Category.activity}
@@ -143,8 +178,8 @@ const StepDuration = () => {
         <SliderThumb index={1} />
       </Slider>
 
-      <Heading color="white" w="100%" textAlign="left" size="sm" mt="2vh" mb="1vh">
-        {`Mental - ${mentalDuration}min`}
+      <Heading color="white" w="100%" textAlign="left" size="sm" mt="2vh" mb="1%">
+        {`${t(`category.${ECategory.MENTAL}`)} - ${mentalDuration}min`}
       </Heading>
       <Slider
         colorScheme={CssColors.Category.mental}
@@ -162,8 +197,8 @@ const StepDuration = () => {
         <SliderThumb index={1} />
       </Slider>
 
-      <Heading color="white" w="100%" textAlign="left" size="sm" mt="2vh" mb="1vh">
-        {`Break - ${breakDuration}min`}
+      <Heading color="white" w="100%" textAlign="left" size="sm" mt="2vh" mb="1%">
+        {`${t(`category.${ECategory.BREAK}`)} - ${breakDuration}min`}
       </Heading>
       <Slider
         colorScheme={CssColors.Category.break}
@@ -181,24 +216,27 @@ const StepDuration = () => {
         <SliderThumb index={1} />
       </Slider>
 
-      <div style={{ marginTop: '3vh' }}>
-        <Sequence
-          subSequences={[
-            {
-              position: 0,
-              block: { type: blockOrder.first, duration: getDuration(blockOrder.first) },
-            },
-            {
-              position: 1,
-              block: { type: blockOrder.second, duration: getDuration(blockOrder.second) },
-            },
-            {
-              position: 2,
-              block: { type: blockOrder.third, duration: getDuration(blockOrder.third) },
-            },
-          ]}
-          breakDuration={breakDuration}
-        />
+      <Heading color="white" w="100%" textAlign="left" size="sm" mt="2vh" mb="1%">
+        {`${t(`category.${ECategory.RECAP}`)} - ${recapDuration}min`}
+      </Heading>
+      <Slider
+        colorScheme={CssColors.Category.recap}
+        defaultValue={PRESETS[PRESET_DEFAULT].recap}
+        value={recapDuration}
+        min={1}
+        max={5}
+        width="100%"
+        onChange={onRecapDurationChange}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb index={0} />
+        <SliderThumb index={1} />
+      </Slider>
+
+      <div style={{ marginTop: '5%' }}>
+        <Sequence subSequences={sequence} breakDuration={breakDuration} />
       </div>
     </>
   );
