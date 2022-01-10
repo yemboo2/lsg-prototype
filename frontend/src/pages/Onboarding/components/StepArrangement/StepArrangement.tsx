@@ -1,21 +1,22 @@
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Text } from '@chakra-ui/layout';
+import { useTranslation } from 'react-i18next';
 
 import { List } from './List';
 import { Container } from './styles';
 import { selectSetBlockOrder, useOnboarding } from '../../state';
 
 const StepArrangment = () => {
+  const { t } = useTranslation();
   const setBlockOrder = useOnboarding(selectSetBlockOrder);
 
   return (
     <>
       <Text color="white" w="100%" textAlign="left">
-        Lets first define how you want to have your categories arrangent - or in other words - what
-        should follow what. The below is the order we recommend. Although, feel free to change it.
+        {t('onboarding.arrangement.description')}
       </Text>
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={HTML5Backend} options={{ enableMouseEvents: true }}>
         <Container>
           <List orderChanged={setBlockOrder} />
         </Container>

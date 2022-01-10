@@ -4,7 +4,7 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10vh 10%;
+  padding: 7vh 10%;
 
   .headline {
     width: 100%;
