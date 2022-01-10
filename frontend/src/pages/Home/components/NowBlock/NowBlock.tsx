@@ -55,7 +55,7 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
    * Callback clears interval.
    */
   useEffect(() => {
-    audioRef.current = new Audio('./audio/beep.mp3');
+    audioRef.current = new Audio('./assets/audio/beep.mp3');
     worker.current = new Worker('./workers/tick.js');
 
     const eventHander = ($event: MessageEvent) => {

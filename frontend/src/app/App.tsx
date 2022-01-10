@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import Header from '../components/Header/Header';
 import RouterOutlet from '../routes/RouterOutlet';
 import { Container } from './styles';
 import { selectSetSequences, selectSetUserId, useUser } from '../state/user';
@@ -25,7 +24,6 @@ const App = () => {
   return (
     <ChakraProvider>
       <Container>
-        <Header />
         <RouterOutlet />
       </Container>
     </ChakraProvider>

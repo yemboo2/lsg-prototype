@@ -1,6 +1,8 @@
 export const ERoutes = {
   DEFAULT: '/',
-  ONBOARDING: '/onboarding',
+  CREATE: '/create',
+  DASHBOARD: '/dashboard',
+  WAIT_FOR_IT: '/wait-for-it',
 };
 
 export interface IRoute {
