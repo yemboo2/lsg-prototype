@@ -18,6 +18,7 @@ import { IBlock, ISequence } from '../../interfaces/sequence-interface';
 import { getDurationString } from '../../helpers/time-helper';
 import { SEQUENCES } from './sequences';
 import Header from '../../components/Header/Header';
+import CategoryBlocks from './components/CategoryBlocks/CategoryBlocks';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -107,9 +108,6 @@ const Home = () => {
     setCurrentChunk(selectedSequence.subsequences[chunkCounter % subSequenceLength].block);
   }, [chunkCounter, reps, scheduleBreak, selectedSequence]);
 
-  console.log('currentChunk ', currentChunk);
-  console.log('chunkCounter', chunkCounter);
-
   return (
     <>
       <Header />
@@ -188,10 +186,21 @@ const Home = () => {
             )}
           </div>
 
-          {currentChunk && (
+          {currentChunk ? (
             <div className="now-container">
               <NowBlock chunk={currentChunk} onFinished={onFinishedChunk} />
             </div>
+          ) : (
+            selectedSequence && (
+              <>
+                <CategoryBlocks sequence={selectedSequence} showBreak={scheduleBreak} />
+                <Text className="total-duration" color="white" mt="2vh">
+                  {t('home.totalDuration', {
+                    time: getDurationString(selectedSequence, reps, scheduleBreak),
+                  })}
+                </Text>
+              </>
+            )
           )}
           <Button
             variant="outline"
