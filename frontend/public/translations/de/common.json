@@ -87,5 +87,30 @@
     "createSequence": "Sequenz erstellen",
     "waitForIt": "Wait-for-it Liste",
     "website": "Webseite"
-  }
+  },
+  "dashboard": {
+    "heading": "Übersicht",
+    "comingSoonText": "In Zukunft kannst du hier deinen Fortschritt verfolgen. Unter anderem wird diese Seite eine Übersicht deiner abgeschlossenen Sequenzen & Einheiten beinhalten."
+  },
+  "waitForItList": {
+    "heading": "Wait-For-It Liste",
+    "description": "Auf dieser Seite findest du eine Liste mit allen Funktionen die bereits integriert wurde, sowie eine Liste mit Funktionen, welche in Zukunft noch kommen werden.",
+    "done": {
+      "heading": "Erledigt",
+      "sequenceControlPanel": "Sequenze-Verwaltung",
+      "sequenceDefinitonFlow": "Sequenz-Erstellungs-Ablauf",
+      "waitForItList": "Wait-for-it Liste"
+    },
+    "soon": {
+      "heading": "Bald",
+      "dashboard": "Übersichtsseite",
+      "sequenceScheduler": "Sequenz-Planer",
+      "dynamicTasking": "Dynaming tasking",
+      "extendedSequenceControl": "Erweiterte Sequenz-Kontrolle"
+    },
+    "later": {
+      "heading": "Etwas später"
+    }
+  },
+  "waitForIt": "Wait for it ..."
 }
