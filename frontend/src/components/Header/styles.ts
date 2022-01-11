@@ -10,7 +10,7 @@ export const Container = styled.div`
   top: 0;
   height: 60px;
   box-shadow: 0px 2px 2px 1px rgb(95, 125, 124);
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(0, 0, 0, 0.25);
 
   .header-element {
     display: flex;
@@ -33,12 +33,12 @@ export const Container = styled.div`
 
   .logo-container {
     margin: auto;
-    margin-top: -8px;
-    background-color: rgba(255, 255, 255, 0.6);
-    height: 64px;
-    width: 64px;
+    margin-top: 0px;
+    background-color: rgba(0, 0, 0, 1);
+    height: 60px;
+    width: 60px;
     border-radius: 32px;
-    padding-left: 5px;
+    padding-left: 4px;
     padding-top: 5px;
 
     cursor: pointer;

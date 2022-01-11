@@ -88,5 +88,30 @@
     "createSequence": "Create sequence",
     "waitForIt": "Wait-for-it list",
     "website": "Website"
-  }
+  },
+  "dashboard": {
+    "heading": "Dashboard",
+    "comingSoonText": "In the future you'll be able to check you progress on this page. Amongst others this dashboard will show you how man sequences & chunks you have completed."
+  },
+  "waitForItList": {
+    "heading": "Wait-for-it list",
+    "description": "This page presents to you the already existing functionality as well as a list of upcoming features.",
+    "done": {
+      "heading": "Done",
+      "sequenceControlPanel": "Sequence control panel",
+      "sequenceDefinitonFlow": "Sequence definitoin flow",
+      "waitForItList": "Wait-for-it list"
+    },
+    "soon": {
+      "heading": "Soon",
+      "dashboard": "Dashboard page",
+      "sequenceScheduler": "Sequence scheduler",
+      "dynamicTasking": "Dynamic tasking",
+      "extendedSequenceControl": "Enhanced sequence control"
+    },
+    "later": {
+      "heading": "A bit later"
+    }
+  },
+  "waitForIt": "Wait for it ..."
 }

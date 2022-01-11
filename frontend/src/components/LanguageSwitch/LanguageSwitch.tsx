@@ -21,10 +21,16 @@ const LanguageSwitch = () => {
     <Menu>
       <MenuButton
         as={IconButton}
-        icon={<ReactCountryFlag countryCode={LANGUAGE_COUNTRY_MAP[i18n.language.split('-')[0]]} />}
+        icon={
+          <ReactCountryFlag
+            countryCode={LANGUAGE_COUNTRY_MAP[i18n.language.split('-')[0]]}
+            style={{
+              fontSize: '20px',
+            }}
+          />
+        }
         variant="outline"
         backgroundColor="rgba(255,255,255, 0.8)"
-        pr="4px"
       />
       <MenuList>
         {LANGUAGES.map((language: string) => (

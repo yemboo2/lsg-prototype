@@ -110,7 +110,6 @@ const Home = () => {
   return (
     <>
       <Header />
-
       <Container>
         <div className="content-container">
           <Heading color="white" mt="4vh" mb="3vh">

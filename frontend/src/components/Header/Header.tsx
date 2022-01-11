@@ -51,10 +51,10 @@ const Header = () => {
       <div className="header-element">
         <div className="logo-container" onClick={() => history.push(ERoutes.DEFAULT)}>
           <img
-            src={`${process.env.PUBLIC_URL}/assets/svg/logo.svg`}
+            src={`${process.env.PUBLIC_URL}/assets/images/logo.png`}
             alt="logo"
-            width={54}
-            height={54}
+            width={52}
+            height={52}
           />
         </div>
       </div>
