@@ -48,10 +48,19 @@ export const List = ({ orderChanged }: IListProps) => {
     [blocks]
   );
 
+  const [dragIndex, setDragIndex] = useState<ECategory | undefined>(undefined);
+
   return (
     <ListContainer>
       {blocks.map((block, index) => (
-        <ListItem key={block.id} index={index} type={block.type} moveListItem={moveBlockListItem} />
+        <ListItem
+          key={block.id}
+          index={index}
+          type={block.type}
+          moveListItem={moveBlockListItem}
+          isOtherItemDragging={dragIndex !== undefined && dragIndex !== block.type}
+          drags={setDragIndex}
+        />
       ))}
     </ListContainer>
   );

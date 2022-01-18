@@ -50,6 +50,8 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
   const chunkFinished = useRef<boolean>(false);
   const worker = useRef<Worker>();
 
+  console.log('# CHUNK ', chunk);
+
   /**
    * Init audio.
    * Callback clears interval.
@@ -58,8 +60,20 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
     audioRef.current = new Audio('./assets/audio/beep.mp3');
     worker.current = new Worker('./workers/tick.js');
 
+    return () => {
+      worker.current?.postMessage({ msg: 'end-tick' });
+    };
+  }, []);
+
+  /**
+   * For some reason canceling the interval in the
+   * web-worker with 'end-tick' is not reliable. Therefore
+   * this workaround where we check for isPaused in the
+   * eventHandler -> necessary to put this within useEffect.
+   */
+  useEffect(() => {
     const eventHander = ($event: MessageEvent) => {
-      if ($event && $event.data)
+      if ($event && $event.data && !isPaused)
         setTime(
           endTime && endTime.current !== undefined
             ? endTime.current - Math.floor(Date.now() / 1000)
@@ -67,13 +81,17 @@ const NowBlock = ({ chunk, activity, onFinished }: INowBlockProps) => {
         );
     };
 
-    worker.current.addEventListener('message', eventHander);
+    // Defined already in onMount, but better to be safe
+    if (!worker.current) {
+      worker.current = new Worker('./workers/tick.js');
+    }
+
+    worker.current?.addEventListener('message', eventHander);
 
     return () => {
       worker.current?.removeEventListener('message', eventHander);
-      worker.current?.postMessage({ msg: 'end-tick' });
     };
-  }, []);
+  }, [isPaused]);
 
   const toggleMute = useCallback(() => {
     setMuted((prev) => !prev);

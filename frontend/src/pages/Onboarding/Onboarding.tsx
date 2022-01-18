@@ -17,12 +17,13 @@ import StepArrangment from './components/StepArrangement/StepArrangement';
 // import StepActivities from './components/StepActivities/StepActivities';
 // import { MENTAL_ACTIVITIES, PHYSICAL_ACTIVITIES } from './components/StepActivities/constants';
 // import StepPriority from './components/StepPriority/StepPriority';
-import { selectBlockOrder, selectDurations, selectName, selectRecap, useOnboarding } from './state';
+import { selectBlockOrder, selectDurations, selectName, useOnboarding } from './state';
 import { ISequence } from '../../interfaces/sequence-interface';
 import StepName from './components/StepName/StepName';
 import { ECategory } from '../../enums/category';
-import StepSummary from './components/StepSummary/StepSummary';
+// import StepSummary from './components/StepSummary/StepSummary';
 import Header from '../../components/Header/Header';
+import { ERoutes } from '../../routes/types';
 
 const getDefaultSequenceTitle = () => `Sequence${Math.floor(Math.random() * 89 + 10)}`;
 
@@ -37,27 +38,15 @@ const Onboarding = () => {
   const blockOrder = useOnboarding(selectBlockOrder);
   const durations = useOnboarding(selectDurations);
   const name = useOnboarding(selectName);
-  const recap = useOnboarding(selectRecap);
   const userSequences = useUser(selectSequences);
 
   const goBack = useCallback(() => {
-    history.goBack();
+    history.replace(ERoutes.DEFAULT);
   }, []);
 
   const scrollToStep = (step: number) => {
     const documentHeight = document.documentElement.clientHeight;
-    let top: number;
-
-    switch (step) {
-      case 0:
-        top = 0;
-        break;
-      case 1:
-        top = 0.85 * documentHeight + 50;
-        break;
-      default:
-        top = 0.85 * documentHeight + 60 + (step - 1) * 0.9 * documentHeight;
-    }
+    const top: number = step * 0.96 * documentHeight;
 
     document.documentElement.scrollTo({ top, behavior: 'smooth' });
   };
@@ -77,13 +66,11 @@ const Onboarding = () => {
       break: durations.break,
     };
 
-    if (recap) {
-      const workIndex = sequence.subsequences.findIndex((ss) => ss.block.type === ECategory.WORK);
-      sequence.subsequences.splice(workIndex + 1, 0, {
-        position: 0,
-        block: { type: ECategory.RECAP, duration: 1 },
-      });
-    }
+    const workIndex = sequence.subsequences.findIndex((ss) => ss.block.type === ECategory.WORK);
+    sequence.subsequences.splice(workIndex + 1, 0, {
+      position: 0,
+      block: { type: ECategory.RECAP, duration: durations.recap },
+    });
 
     for (let i = 0; i < sequence.subsequences.length; i += 1) {
       sequence.subsequences[i].position = i;
@@ -96,7 +83,7 @@ const Onboarding = () => {
     setUserSequenceCookie([...userSequences, sequence]);
 
     goBack();
-  }, [name, blockOrder, durations, recap]);
+  }, [name, blockOrder, durations]);
 
   return (
     <>
@@ -249,14 +236,14 @@ const Onboarding = () => {
             headline={t('onboarding.naming.headline')}
             buttons={[
               { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(2) },
-              { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(4) },
+              { type: EOnboardingButtonType.SUBMIT, onClick: onSubmit },
             ]}
           >
             <StepName />
           </OnboardingStep>
         </div>
 
-        <div
+        {/* <div
           ref={(ref) => {
             refsObj.current[4] = ref;
           }}
@@ -271,7 +258,7 @@ const Onboarding = () => {
           >
             <StepSummary />
           </OnboardingStep>
-        </div>
+        </div> */}
       </Container>
     </>
   );

@@ -1,28 +1,57 @@
 import { Text } from '@chakra-ui/layout';
+import { useTranslation } from 'react-i18next';
 
-// FIXME: Adjust text
+const StepIntro = () => {
+  const { t } = useTranslation();
 
-const StepIntro = () => (
-  <>
-    <Text color="white" w="100%" textAlign="left" fontWeight="bold">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-      invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-    </Text>
-    <Text color="white" w="100%" textAlign="left" mt={3}>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-      invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-      justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-      ipsum dolor sit amet.
-    </Text>
-    <Text color="white" w="100%" textAlign="left" mt={5}>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-      invidunt ut
-    </Text>
-    <Text color="white" w="100%" textAlign="left" fontWeight="bold" mt={5}>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-      invidunt ut labore et dolore magna aliquyam
-    </Text>
-  </>
-);
+  return (
+    <>
+      <Text
+        color="white"
+        w="100%"
+        textAlign="left"
+        style={{ textAlign: 'justify', hyphens: 'auto' }}
+      >
+        {t('onboarding.intro.descriptionPart1')}
+      </Text>
+      <Text
+        color="white"
+        w="100%"
+        textAlign="left"
+        mt={3}
+        style={{ textAlign: 'justify', hyphens: 'auto' }}
+      >
+        {t('onboarding.intro.descriptionPart2')}
+      </Text>
+      <Text
+        color="white"
+        w="100%"
+        textAlign="left"
+        mt={3}
+        style={{ textAlign: 'justify', hyphens: 'auto' }}
+      >
+        {t('onboarding.intro.descriptionPart3')}
+      </Text>
+      <Text
+        color="white"
+        w="100%"
+        textAlign="left"
+        mt={3}
+        style={{ textAlign: 'justify', hyphens: 'auto' }}
+      >
+        {t('onboarding.intro.descriptionPart4')}
+      </Text>
+      <Text
+        color="white"
+        w="100%"
+        textAlign="left"
+        mt={3}
+        style={{ textAlign: 'justify', hyphens: 'auto' }}
+      >
+        {t('onboarding.intro.descriptionPart5')}
+      </Text>
+    </>
+  );
+};
 
 export default StepIntro;

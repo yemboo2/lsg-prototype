@@ -38,8 +38,9 @@ export const Container = styled.div`
     height: 60px;
     width: 60px;
     border-radius: 32px;
-    padding-left: 4px;
-    padding-top: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding-left: 3px;
+    padding-top: 4px;
 
     cursor: pointer;
   }

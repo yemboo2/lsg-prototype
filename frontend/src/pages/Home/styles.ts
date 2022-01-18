@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   height: 100vh;
   width: 100%;
-  padding-top: 50px;
+  padding-top: 60px;
 
   .content-container {
-    width: 50%;
+    width: 70%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -38,13 +38,18 @@ export const Container = styled.div`
     }
 
     .sequence {
-      width: 80%;
+      width: 60%;
       margin-bottom: 3vh;
     }
 
     .now-container {
-      width: 80%;
+      width: 60%;
       margin: auto;
+    }
+
+    .total-duration {
+      color: white;
+      font-weight: bold;
     }
   }
 `;
