@@ -114,68 +114,75 @@ const Home = () => {
       <Container>
         <div className="content-container">
           <Heading color="white" mt="4vh" mb="3vh">
-            {t('home.heading')}
+            {t(`home.heading${isSequenceActive ? '-active' : ''}`)}
           </Heading>
-          <div className="sequence-selector">
-            <Select
-              onChange={handleChangeSelectSequence}
-              colorScheme="white"
-              color="white"
-              defaultValue={userSequences && userSequences.length > 0 ? sequences[0].id : undefined}
-              placeholder={selectedSequence ? undefined : t('home.sequence.select-placeholder')}
-              disabled={isSequenceActive}
-              minW="150px"
-            >
-              {sequences.map((seq) => (
-                <option key={seq.id} value={seq.id}>
-                  {seq.title}
-                </option>
-              ))}
-            </Select>
-            <Text color="white" ml="1vw" mr="1vw">
-              {t('home.sequence.or')}
-            </Text>
-            <div>
-              <Text
-                className={classNames('create-sequence', { disabled: isSequenceActive })}
-                size="md"
-                onClick={() => {
-                  if (!isSequenceActive) history.push(ERoutes.CREATE);
-                }}
-                width="180px"
-              >
-                {t('home.sequence.create')}
-              </Text>
-            </div>
-          </div>
-          <div className="rep-container">
-            <Text color="white" mr="1vw">
-              {t('home.chooseRep')}
-            </Text>
+          {!isSequenceActive && (
+            <>
+              <div className="sequence-selector">
+                <Select
+                  onChange={handleChangeSelectSequence}
+                  colorScheme="white"
+                  color="white"
+                  defaultValue={
+                    userSequences && userSequences.length > 0 ? sequences[0].id : undefined
+                  }
+                  placeholder={selectedSequence ? undefined : t('home.sequence.select-placeholder')}
+                  disabled={isSequenceActive}
+                  minW="150px"
+                >
+                  {sequences.map((seq) => (
+                    <option key={seq.id} value={seq.id}>
+                      {seq.title}
+                    </option>
+                  ))}
+                </Select>
+                <Text color="white" ml="1vw" mr="1vw">
+                  {t('home.sequence.or')}
+                </Text>
+                <div>
+                  <Text
+                    className={classNames('create-sequence', { disabled: isSequenceActive })}
+                    size="md"
+                    onClick={() => {
+                      if (!isSequenceActive) history.push(ERoutes.CREATE);
+                    }}
+                    width="180px"
+                  >
+                    {t('home.sequence.create')}
+                  </Text>
+                </div>
+              </div>
+              <div className="rep-container">
+                <Text color="white" mr="1vw">
+                  {t('home.chooseRep')}
+                </Text>
 
-            <RadioGroup onChange={onRepsChange} value={`${reps}`}>
-              <Stack direction="row" spacing="6">
-                <Radio value="1" isDisabled={isSequenceActive}>
-                  <Text color="white">1/3</Text>
-                </Radio>
-                <Radio value="2" isDisabled={isSequenceActive}>
-                  <Text color="white">2/3</Text>
-                </Radio>
-                <Radio value="3" isDisabled={isSequenceActive}>
-                  <Text color="white">3/3</Text>
-                </Radio>
-              </Stack>
-            </RadioGroup>
-          </div>
-          <Checkbox
-            onChange={() => setScheduleBreak((prev) => !prev)}
-            isChecked={scheduleBreak}
-            isDisabled={isSequenceActive}
-            color="white"
-            mb="3vh"
-          >
-            {t('home.scheduleBreak')}
-          </Checkbox>
+                <RadioGroup onChange={onRepsChange} value={`${reps}`}>
+                  <Stack direction="row" spacing="6">
+                    <Radio value="1" isDisabled={isSequenceActive}>
+                      <Text color="white">1/3</Text>
+                    </Radio>
+                    <Radio value="2" isDisabled={isSequenceActive}>
+                      <Text color="white">2/3</Text>
+                    </Radio>
+                    <Radio value="3" isDisabled={isSequenceActive}>
+                      <Text color="white">3/3</Text>
+                    </Radio>
+                  </Stack>
+                </RadioGroup>
+              </div>
+              <Checkbox
+                onChange={() => setScheduleBreak((prev) => !prev)}
+                isChecked={scheduleBreak}
+                isDisabled={isSequenceActive}
+                color="white"
+                mb="3vh"
+              >
+                {t('home.scheduleBreak')}
+              </Checkbox>
+            </>
+          )}
+
           <div className="sequence">
             {selectedSequence && (
               <Sequence
@@ -185,22 +192,24 @@ const Home = () => {
               />
             )}
           </div>
+          {selectedSequence && (
+            <div style={{ marginBottom: '2vh' }}>
+              <CategoryBlocks sequence={selectedSequence} showBreak={scheduleBreak} />
+            </div>
+          )}
 
-          {currentChunk ? (
+          {currentChunk && (
             <div className="now-container">
               <NowBlock chunk={currentChunk} onFinished={onFinishedChunk} />
             </div>
-          ) : (
-            selectedSequence && (
-              <>
-                <CategoryBlocks sequence={selectedSequence} showBreak={scheduleBreak} />
-                <Text className="total-duration" color="white" mt="2vh">
-                  {t('home.totalDuration', {
-                    time: getDurationString(selectedSequence, reps, scheduleBreak),
-                  })}
-                </Text>
-              </>
-            )
+          )}
+
+          {!isSequenceActive && selectedSequence && (
+            <Text className="total-duration" color="white">
+              {t('home.totalDuration', {
+                time: getDurationString(selectedSequence, reps, scheduleBreak),
+              })}
+            </Text>
           )}
           <Button
             variant="outline"
@@ -208,13 +217,10 @@ const Home = () => {
             border="2px"
             color="white"
             _hover={{ color: 'black', bg: 'white' }}
-            mt="5vh"
+            mt="3vh"
             disabled={!selectedSequence}
           >
             {t(`home.${isSequenceActive ? 'cancle' : 'startNow'}`)}
-            {!isSequenceActive &&
-              selectedSequence &&
-              ` (${getDurationString(selectedSequence, reps, scheduleBreak)})`}
           </Button>
         </div>
       </Container>

@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  margin-top: 15vh;
+  .block-container {
+    margin-top: 5vh;
+  }
 `;
 
 export const ListContainer = styled.div`

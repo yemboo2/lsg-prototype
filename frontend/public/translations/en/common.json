@@ -10,16 +10,24 @@
       "submit": "Let's go"
     },
     "intro": {
-      "headline": "Introduction"
+      "headline": "Introduction",
+      "descriptionPart1": "Sequencing is a framework that intertwines insights of neurosciences, cognitive behavioral therapy, learning and working psychology into one actionable system.",
+      "descriptionPart2": "It does so by differentiating one's daily tasks into exclusive blocks with specific characteristics, chunks them down into functionable pieces and alternates them in a repeating fashion as time constrained slots into a sequence.",
+      "descriptionPart3": "You are hereby invited to playfully integrate your favorite sports, hobbies and also chores into your work process, what ever that may be.",
+      "descriptionPart4": "Through the alternation of activities, the different cognitive modes those come with and the use of time constraints you will feel an immediate increase in motivation, productivity and wellbeing.",
+      "descriptionPart5": "We want to stress the fact that the content of these blocks is entirely up to you, as are the time constraints you set yourself. In the following process you find three different arche types of creating sequence set ups with shorter / longer work and activity related chunks. But at the end of the day, we envision sequencing to be radically individual and we invite you to try out different schedules to find your own personal style."
     },
     "arrangement": {
       "headline": "Arrangement",
-      "description": "Lets first define how you want to have your categories arrangent - or in other words - what should follow what. The below is the order we recommend. Although, feel free to change it by using drag&drop."
+      "description": "Lets first define how you want to have your categories arrangent - or in other words - what should follow what. The below is the order we recommend. Although, feel free to change it by using drag&drop.",
+      "activity": "This block contains coordinative & physical chunks to activate your body and supercharge your brain with oxygen. Examples are stretching, Yoga poses or Tai-Chi.",
+      "mental": "Here you turn inward for mental reflection, meditation or activating necessary frames for your upcoming tasks. Examples include focus & breathing meditation or affirmations.",
+      "deepwork": "Here you work without any kind of interruption on your prescheduled tasks, thus conditioning your mind to get into the zone with every chunk. Examples are your job, private projects or learning a language."
     },
     "duration": {
       "headline": "Duration",
       "description": "Now let's define the duration of the blocks in each category. Feel free to choose a preset or adjust to your individual preferences.",
-      "individual": "individual"
+      "individual": "Individual"
     },
     "physical-activities": {
       "headline": "Physical activities"
@@ -45,6 +53,7 @@
   },
   "home": {
     "heading": "Manage your Sequences",
+    "heading-active": "Enjoy your Sequence",
     "create-sequence": "Create a sequence",
     "chooseRep": "Choose a whole sequence or only a fraction:",
     "scheduleBreak": "Schedule a break at the end",
@@ -98,7 +107,7 @@
     "done": {
       "heading": "Done",
       "sequenceControlPanel": "Sequence control panel",
-      "sequenceDefinitonFlow": "Sequence definitoin flow",
+      "sequenceDefinitionFlow": "Sequence definition flow",
       "waitForItList": "Wait-for-it list"
     },
     "soon": {
@@ -107,9 +116,6 @@
       "sequenceScheduler": "Sequence scheduler",
       "dynamicTasking": "Dynamic tasking",
       "extendedSequenceControl": "Enhanced sequence control"
-    },
-    "later": {
-      "heading": "A bit later"
     }
   },
   "waitForIt": "Wait for it ..."

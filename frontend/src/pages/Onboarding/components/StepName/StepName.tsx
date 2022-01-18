@@ -19,16 +19,18 @@ const StepName = () => {
 
   return (
     <Container>
-      <Text color="white" mb="2vh" mt="1vh">
+      <Text color="white" mb="5vh" mt="1vh" style={{ textAlign: 'justify', hyphens: 'auto' }}>
         {t('onboarding.naming.description')}
       </Text>
-      <Input
-        value={name}
-        onChange={handleChange}
-        placeholder={t('onboarding.naming.placeholder')}
-        size="md"
-        color="white"
-      />
+      <div style={{ width: '100%' }}>
+        <Input
+          value={name}
+          onChange={handleChange}
+          placeholder={t('onboarding.naming.placeholder')}
+          size="md"
+          color="white"
+        />
+      </div>
     </Container>
   );
 };

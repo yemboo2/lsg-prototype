@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  padding-top: 50px;
-  padding-bottom: 5vh;
+  padding: 2vh 0; // (100 - 96 (line 8)) / 2
 
   .step-container {
-    height: 90vh;
+    height: 96vh;
     width: 50%;
     margin: auto;
   }

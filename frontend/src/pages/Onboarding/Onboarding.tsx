@@ -21,8 +21,9 @@ import { selectBlockOrder, selectDurations, selectName, useOnboarding } from './
 import { ISequence } from '../../interfaces/sequence-interface';
 import StepName from './components/StepName/StepName';
 import { ECategory } from '../../enums/category';
-import StepSummary from './components/StepSummary/StepSummary';
+// import StepSummary from './components/StepSummary/StepSummary';
 import Header from '../../components/Header/Header';
+import { ERoutes } from '../../routes/types';
 
 const getDefaultSequenceTitle = () => `Sequence${Math.floor(Math.random() * 89 + 10)}`;
 
@@ -40,23 +41,12 @@ const Onboarding = () => {
   const userSequences = useUser(selectSequences);
 
   const goBack = useCallback(() => {
-    history.goBack();
+    history.replace(ERoutes.DEFAULT);
   }, []);
 
   const scrollToStep = (step: number) => {
     const documentHeight = document.documentElement.clientHeight;
-    let top: number;
-
-    switch (step) {
-      case 0:
-        top = 0;
-        break;
-      case 1:
-        top = 0.835 * documentHeight + 60;
-        break;
-      default:
-        top = 0.835 * documentHeight + 60 + (step - 1) * 0.9 * documentHeight;
-    }
+    const top: number = step * 0.96 * documentHeight;
 
     document.documentElement.scrollTo({ top, behavior: 'smooth' });
   };
@@ -246,14 +236,14 @@ const Onboarding = () => {
             headline={t('onboarding.naming.headline')}
             buttons={[
               { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(2) },
-              { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(4) },
+              { type: EOnboardingButtonType.SUBMIT, onClick: onSubmit },
             ]}
           >
             <StepName />
           </OnboardingStep>
         </div>
 
-        <div
+        {/* <div
           ref={(ref) => {
             refsObj.current[4] = ref;
           }}
@@ -268,7 +258,7 @@ const Onboarding = () => {
           >
             <StepSummary />
           </OnboardingStep>
-        </div>
+        </div> */}
       </Container>
     </>
   );

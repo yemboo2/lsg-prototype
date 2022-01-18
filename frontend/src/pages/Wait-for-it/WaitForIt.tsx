@@ -22,6 +22,7 @@ const WaitForIt = () => {
             color="white"
             isChecked={done}
             textDecoration={done ? 'line-through' : ''}
+            style={{ cursor: 'auto' }}
           >
             {t(`waitForItList.${heading}.${item}`)}
           </Checkbox>
@@ -38,22 +39,16 @@ const WaitForIt = () => {
           <Heading color="white" mt="4vh" mb="3vh">
             {t('waitForItList.heading')}
           </Heading>
-          <Text color="white" margin="auto" width="80%">
+          <Text
+            color="white"
+            margin="auto"
+            width="80%"
+            style={{ textAlign: 'justify', hyphens: 'auto' }}
+          >
             {t('waitForItList.description')}
           </Text>
           {waitForItList.map((list) => renderList(list))}
         </div>
-        {/* <Text
-          mt="5vh"
-          color="white"
-          margin="auto"
-          width="80%"
-          fontStyle="italic"
-          textAlign="center"
-          fontSize="2xl"
-        >
-          {t('waitForIt')}
-        </Text> */}
       </Container>
     </>
   );

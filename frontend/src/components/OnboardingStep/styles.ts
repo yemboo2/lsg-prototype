@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   height: 100%;
+  padding: 10vh 10%;
   display: flex;
   flex-direction: column;
-  padding: 7vh 10%;
 
   .headline {
     width: 100%;

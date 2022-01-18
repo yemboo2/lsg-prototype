@@ -10,11 +10,19 @@
       "submit": "Auf geht's"
     },
     "intro": {
-      "headline": "Einführung"
+      "headline": "Einführung",
+      "descriptionPart1": "Sequencing ist ein Ansatz, der Erkenntnisse der Neurowissenschaften, der kognitiven Verhaltenstherapie, der Lern- und Arbeitspsychologie zu einem umsetzbaren System verbindet.",
+      "descriptionPart2": "Dazu werden die täglichen Aufgaben in exklusive Blöcke mit spezifischen Merkmalen unterteilt, in funktionsfähige Teile zerlegt und in einer sich wiederholenden Weise als zeitlich begrenzte Slots in einer Sequenz abgewechselt.",
+      "descriptionPart3": "Du bist hiermit eingeladen, deine Lieblingssportarten, Hobbys und auch Hausarbeiten spielerisch in deinen Arbeitsprozess zu integrieren.",
+      "descriptionPart4": "Durch die Abwechslung der Aktivitäten, die damit verbundenen unterschiedlichen kognitiven Modi und die Nutzung von Zeitvorgaben wirst du eine unmittelbare Steigerung von Motivation, Produktivität und Wohlbefinden spüren.",
+      "descriptionPart5": "Wir möchten betonen, dass der Inhalt dieser Blöcke ganz dir überlassen bleibt, ebenso wie die zeitlichen Vorgaben, die du selbst festlegst. Im folgenden Prozess findest du drei verschiedene Arche-Typen für die Erstellung von Sequenzen mit kürzeren oder längeren Arbeits- und Aktivitätsblöcken. Letztendlich stellen wir uns das Sequencing aber sehr individuell vor und laden dich dazu ein, verschiedene Zeitpläne auszuprobieren, um deinen persönlichen Stil zu finden."
     },
     "arrangement": {
       "headline": "Anordnung",
-      "description": "Zu Beginn werden kannst du die Reihenfolge der einzelnen Blöcke definieren. Die unten stehende Reihenfolge empfehlen wir. Nichtsdestotrotz, kannst du die Anordnung auch durch ziehen und loslassen (drag&drop) verändern."
+      "description": "Zu Beginn werden kannst du die Reihenfolge der einzelnen Blöcke definieren. Die unten stehende Reihenfolge empfehlen wir. Nichtsdestotrotz, kannst du die Anordnung auch durch ziehen und loslassen (drag&drop) verändern.",
+      "activity": "Dieser Block beinhaltet physische & kooridnative Einheiten um den Körper zu aktiveren und dein Gehirn mit Sauerstoff zu versorgen. Beispiele wären (dynamisches) Dehnen, Yoga oder Tai-Chi.",
+      "mental": "Hier richtest du deine Aufmerksamkeit nach Innen für Reflektionen, Meditationen oder um einen mentalen Rahmen für die nächsten Aufgaben zu setzen. Fokus- und Atem-Meditationen oder Affirmationen sind Beispiele hierfür.",
+      "deepwork": "In diesem Abschnitt arbeitest du ohne jegliche Ablenkung an deinen geplanten Aufgaben, um mit deinen Verstand in einen Flow zu gelangen. Dies kann sein in der Arbeit, für private Projekte oder zum Lernen (von z.B. Sprachen)."
     },
     "duration": {
       "headline": "Dauer",
@@ -45,6 +53,7 @@
   },
   "home": {
     "heading": "Verwalte deine Sequenzen",
+    "heading-active": "Genieße deine Sequenz",
     "chooseRep": "Wähle eine ganze Sequenze oder nur einen Teil:",
     "scheduleBreak": "Plane eine Pause am Ende ein",
     "startNow": "Jetzt starten",
@@ -97,7 +106,7 @@
     "done": {
       "heading": "Erledigt",
       "sequenceControlPanel": "Sequenze-Verwaltung",
-      "sequenceDefinitonFlow": "Sequenz-Erstellungs-Ablauf",
+      "sequenceDefinitionFlow": "Sequenz-Erstellungs-Ablauf",
       "waitForItList": "Wait-for-it Liste"
     },
     "soon": {
@@ -106,9 +115,6 @@
       "sequenceScheduler": "Sequenz-Planer",
       "dynamicTasking": "Dynaming tasking",
       "extendedSequenceControl": "Erweiterte Sequenz-Kontrolle"
-    },
-    "later": {
-      "heading": "Etwas später"
     }
   },
   "waitForIt": "Wait for it ..."

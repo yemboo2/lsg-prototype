@@ -118,20 +118,25 @@ const StepDuration = () => {
 
   return (
     <>
-      <Text color="white" w="100%" textAlign="left">
+      <Text
+        color="white"
+        w="100%"
+        textAlign="left"
+        style={{ textAlign: 'justify', hyphens: 'auto' }}
+      >
         {t('onboarding.duration.description')}
       </Text>
 
       <RadioGroup onChange={onPresetChanged} value={preset} mt="2vh" w="80%">
         <Stack direction="row" justifyContent="space-between">
           <Radio value={EPresetType.VAR1} colorScheme="cyan">
-            <Text color="white">Var 1</Text>
+            <Text color="white">Staccato</Text>
           </Radio>
           <Radio value={EPresetType.VAR2} colorScheme="cyan">
-            <Text color="white">Var 2</Text>
+            <Text color="white">Marcato</Text>
           </Radio>
           <Radio value={EPresetType.VAR3} colorScheme="cyan">
-            <Text color="white">Var 3</Text>
+            <Text color="white">Tenuto</Text>
           </Radio>
           <Radio value={EPresetType.INDIVIDUAL} colorScheme="cyan">
             <Text color="white">{t('onboarding.duration.individual')}</Text>

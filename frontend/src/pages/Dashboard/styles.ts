@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   height: 100vh;
   width: 100%;
-  padding-top: 50px;
+  padding-top: 60px;
 
   .content-container {
     width: 50%;

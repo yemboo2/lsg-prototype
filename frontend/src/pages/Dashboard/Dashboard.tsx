@@ -14,7 +14,13 @@ const Dashboard = () => {
           <Heading color="white" mt="4vh" mb="3vh">
             {t('dashboard.heading')}
           </Heading>
-          <Text color="white" margin="auto" width="80%" mb="4vh">
+          <Text
+            color="white"
+            margin="auto"
+            width="80%"
+            mb="4vh"
+            style={{ textAlign: 'justify', hyphens: 'auto' }}
+          >
             {t('dashboard.comingSoonText')}
           </Text>
           <img
@@ -30,6 +36,7 @@ const Dashboard = () => {
             fontStyle="italic"
             textAlign="center"
             fontSize="4xl"
+            mt="1vh"
           >
             {t('waitForIt')}
           </Text>
