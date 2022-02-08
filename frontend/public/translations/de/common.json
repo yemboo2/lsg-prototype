@@ -19,14 +19,14 @@
     },
     "arrangement": {
       "headline": "Anordnung",
-      "description": "Zu Beginn werden kannst du die Reihenfolge der einzelnen Blöcke definieren. Die unten stehende Reihenfolge empfehlen wir. Nichtsdestotrotz, kannst du die Anordnung auch durch ziehen und loslassen (drag&drop) verändern.",
+      "description": "Zu Beginn kannst du die Reihenfolge der einzelnen Blöcke definieren. Die unten stehende Reihenfolge empfehlen wir. Nichtsdestotrotz, kannst du die Anordnung auch durch ziehen und loslassen (drag&drop) verändern.",
       "activity": "Dieser Block beinhaltet physische & kooridnative Einheiten um den Körper zu aktiveren und dein Gehirn mit Sauerstoff zu versorgen. Beispiele wären (dynamisches) Dehnen, Yoga oder Tai-Chi.",
       "mental": "Hier richtest du deine Aufmerksamkeit nach Innen für Reflektionen, Meditationen oder um einen mentalen Rahmen für die nächsten Aufgaben zu setzen. Fokus- und Atem-Meditationen oder Affirmationen sind Beispiele hierfür.",
       "deepwork": "In diesem Abschnitt arbeitest du ohne jegliche Ablenkung an deinen geplanten Aufgaben, um mit deinen Verstand in einen Flow zu gelangen. Dies kann sein in der Arbeit, für private Projekte oder zum Lernen (von z.B. Sprachen)."
     },
     "duration": {
       "headline": "Dauer",
-      "description": "Jetzt definieren wir die Länge jedes einzelnen Block. Du kannst entweder eine Voreinstellung auswählen oder alles individuell anpassen.",
+      "description": "Jetzt definieren wir die Länge jedes einzelnen Blocks. Du kannst entweder eine Voreinstellung auswählen oder alles individuell anpassen.",
       "individual": "Individuell"
     },
     "physical-activities": {
@@ -63,7 +63,15 @@
       "or": "oder",
       "create": "Erstelle eine Sequence"
     },
-    "totalDuration": "Gesamtzeit: {{time}}"
+    "totalDuration": "Gesamtzeit: {{time}}",
+    "scheduleSequence": {
+      "label": "Sequenze planen",
+      "tooltip": "~ Wait for it ~<br />Hier kannst du bald deine Sequenzen für den Tag zeitlich einplanen."
+    },
+    "dynamicTasking": {
+      "label": "Dynamic tasking",
+      "tooltip": "~ Wait for it ~<br />Hier erhältst du bald spontane Einheiten ohne eine Sequenz gestart zu haben."
+    }
   },
   "now-block": {
     "snooze": "1min Schlummern",
@@ -117,5 +125,10 @@
       "extendedSequenceControl": "Erweiterte Sequenz-Kontrolle"
     }
   },
-  "waitForIt": "Wait for it ..."
+  "waitForIt": "Wait for it ...",
+  "infoPopup": {
+    "descriptionPart1": "Im Moment stellt dieses Tool nur einen kleinen Ausschnitt der Funktionalität dar, die für unser zukünftiges Produktuniversum geplant ist. Die auf unserer Website beschriebenen Ideen sind bereits konzeptionell weiterentwickelt worden und wir freuen uns bei Interesse zu unseren Fortschritten über eine Nachricht per Kontaktformular.",
+    "descriptionPart2": "Dieses Tool ist nicht für die Verwendung auf Smartphones gedacht. Bitte verwende es nur auf einem Computer/Laptop. Eine Smartphone-kompatible Version wird bald folgen.",
+    "buttonText": "Ich verstehe"
+  }
 }

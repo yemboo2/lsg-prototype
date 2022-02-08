@@ -64,7 +64,15 @@
       "or": "or",
       "create": "Create a sequence"
     },
-    "totalDuration": "Total duration: {{time}}"
+    "totalDuration": "Total duration: {{time}}",
+    "scheduleSequence": {
+      "label": "Schedule sequence",
+      "tooltip": "~ Wait for it ~<br />Soon here will you be able to plan ahead your sequences for the day."
+    },
+    "dynamicTasking": {
+      "label": "Dynamic tasking",
+      "tooltip": "~ Wait for it ~<br />Soon here will you be able to receive spontaneous chunks without having started a sequence."
+    }
   },
   "now-block": {
     "snooze": "Snooze 1min",
@@ -118,5 +126,10 @@
       "extendedSequenceControl": "Enhanced sequence control"
     }
   },
-  "waitForIt": "Wait for it ..."
+  "waitForIt": "Wait for it ...",
+  "infoPopup": {
+    "descriptionPart1": "At the moment this tool represents only a very small subset of the functionality we imagine for our future product-universe. The ideas described on our website have already been conceptually advanced and if you are interested about our progress, we would be happy to hear from you via contact form.",
+    "descriptionPart2": "This tool is not meant to be used on smartphones. Please use this on your personal computer only. A smartphone compatible version will follow soon.",
+    "buttonText": "I understand"
+  }
 }

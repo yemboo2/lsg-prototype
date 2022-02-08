@@ -7,6 +7,7 @@ import { Checkbox } from '@chakra-ui/checkbox';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
+import ReactTooltip from 'react-tooltip';
 
 import { Container } from './styles';
 import { selectSequences, useUser } from '../../state/user';
@@ -222,6 +223,58 @@ const Home = () => {
           >
             {t(`home.${isSequenceActive ? 'cancle' : 'startNow'}`)}
           </Button>
+          {!isSequenceActive && (
+            <>
+              <div
+                data-for="main"
+                data-tip={t('home.dynamicTasking.tooltip')}
+                data-iscapture="true"
+                style={{ marginTop: '3vh', cursor: 'help' }}
+              >
+                <Button
+                  variant="outline"
+                  border="2px"
+                  color="white"
+                  _hover={{ color: 'black', bg: 'white', cursor: 'help' }}
+                  disabled
+                >
+                  {t('home.dynamicTasking.label')}
+                </Button>
+              </div>
+              <div
+                data-for="main2"
+                data-tip={t('home.scheduleSequence.tooltip')}
+                data-iscapture="true"
+                style={{ marginTop: '2vh', cursor: 'help' }}
+              >
+                <Button
+                  variant="outline"
+                  border="2px"
+                  color="white"
+                  _hover={{ color: 'black', bg: 'white', cursor: 'help' }}
+                  disabled
+                >
+                  {t('home.scheduleSequence.label')}
+                </Button>
+              </div>
+            </>
+          )}
+          <ReactTooltip
+            id="main"
+            place="right"
+            type="dark"
+            effect="solid"
+            multiline
+            className="tooltipi"
+          />
+          <ReactTooltip
+            id="main2"
+            place="right"
+            type="dark"
+            effect="solid"
+            multiline
+            className="tooltipi"
+          />
         </div>
       </Container>
     </>

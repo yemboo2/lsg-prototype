@@ -5,7 +5,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 code {
@@ -14,4 +15,10 @@ code {
 
 body.dragging {
   cursor: grabbing !important;
+}
+
+@media screen and (min-height: 800px) {
+  body {
+    overflow-y: hidden;
+  }
 }

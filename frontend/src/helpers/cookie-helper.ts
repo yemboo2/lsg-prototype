@@ -28,3 +28,10 @@ const USER_SEQUENCE_COOKIE_KEY = 'lsg_user_sequence';
 export const getUserSequences = (): ISequence[] | undefined => getCookie(USER_SEQUENCE_COOKIE_KEY);
 export const setUserSequences = (userSequences: ISequence[]) =>
   setCookie(USER_SEQUENCE_COOKIE_KEY, JSON.stringify(userSequences));
+
+/* ---- */
+
+// InfoPopup
+const INFO_POPUP_COOKIE_KEY = 'lsg_info_popup';
+export const getInfoPopup = (): boolean => getCookie(INFO_POPUP_COOKIE_KEY);
+export const setInfoPopup = (): void => setCookie(INFO_POPUP_COOKIE_KEY, true);
