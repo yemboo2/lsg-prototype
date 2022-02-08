@@ -52,4 +52,10 @@ export const Container = styled.div`
       font-weight: bold;
     }
   }
+
+  .tooltipi {
+    border-radius: 10px;
+    max-width: 200px;
+    word-wrap: normal;
+  }
 `;

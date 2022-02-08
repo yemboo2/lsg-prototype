@@ -85,6 +85,8 @@ const Onboarding = () => {
     goBack();
   }, [name, blockOrder, durations]);
 
+  const showButtons = window.innerHeight >= 800;
+
   return (
     <>
       <Header />
@@ -97,10 +99,14 @@ const Onboarding = () => {
         >
           <OnboardingStep
             headline={t('onboarding.intro.headline')}
-            buttons={[
-              { type: EOnboardingButtonType.NONE, onClick: () => {} },
-              { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(1) },
-            ]}
+            buttons={
+              showButtons
+                ? [
+                    { type: EOnboardingButtonType.NONE, onClick: () => {} },
+                    { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(1) },
+                  ]
+                : []
+            }
           >
             <StepIntro />
           </OnboardingStep>
@@ -114,10 +120,14 @@ const Onboarding = () => {
         >
           <OnboardingStep
             headline={t('onboarding.arrangement.headline')}
-            buttons={[
-              { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(0) },
-              { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(2) },
-            ]}
+            buttons={
+              showButtons
+                ? [
+                    { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(0) },
+                    { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(2) },
+                  ]
+                : []
+            }
           >
             <StepArrangment />
           </OnboardingStep>
@@ -131,10 +141,14 @@ const Onboarding = () => {
         >
           <OnboardingStep
             headline={t('onboarding.duration.headline')}
-            buttons={[
-              { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(1) },
-              { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(3) },
-            ]}
+            buttons={
+              showButtons
+                ? [
+                    { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(1) },
+                    { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(3) },
+                  ]
+                : []
+            }
           >
             <StepDuration />
           </OnboardingStep>
@@ -148,7 +162,7 @@ const Onboarding = () => {
       >
         <OnboardingStep
           headline={t('onboarding.physical-activities.headline')}
-          buttons={[
+          buttons={showButtons ?[
             { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(2) },
             { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(4) },
           ]}
@@ -165,7 +179,7 @@ const Onboarding = () => {
       >
         <OnboardingStep
           headline={t('onboarding.physical-priorities.headline')}
-          buttons={[
+          buttons={showButtons ?[
             { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(3) },
             { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(5) },
           ]}
@@ -175,7 +189,7 @@ const Onboarding = () => {
             activities={[
               { name: PHYSICAL_ACTIVITIES[0], priority: 1 },
               { name: PHYSICAL_ACTIVITIES[2], priority: 1 },
-            ]}
+            ]: []}
             onPriorityChanged={(name: string, prio: number) => {
               console.log(`${name} changed prio to ${prio}`);
             }}
@@ -191,7 +205,7 @@ const Onboarding = () => {
       >
         <OnboardingStep
           headline={t('onboarding.mental-activities.headline')}
-          buttons={[
+          buttons={showButtons ?[
             { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(4) },
             { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(6) },
           ]}
@@ -208,7 +222,7 @@ const Onboarding = () => {
       >
         <OnboardingStep
           headline={t('onboarding.mental-priorities.headline')}
-          buttons={[
+          buttons={showButtons ?[
             { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(5) },
             { type: EOnboardingButtonType.NEXT, onClick: () => scrollToStep(7) },
           ]}
@@ -218,7 +232,7 @@ const Onboarding = () => {
             activities={[
               { name: MENTAL_ACTIVITIES[0], priority: 1 },
               { name: MENTAL_ACTIVITIES[2], priority: 1 },
-            ]}
+            ]: []}
             onPriorityChanged={(name: string, prio: number) => {
               console.log(`${name} changed prio to ${prio}`);
             }}
@@ -234,10 +248,17 @@ const Onboarding = () => {
         >
           <OnboardingStep
             headline={t('onboarding.naming.headline')}
-            buttons={[
-              { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(2) },
-              { type: EOnboardingButtonType.SUBMIT, onClick: onSubmit },
-            ]}
+            buttons={
+              showButtons
+                ? [
+                    { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(2) },
+                    { type: EOnboardingButtonType.SUBMIT, onClick: onSubmit },
+                  ]
+                : [
+                    { type: EOnboardingButtonType.NONE, onClick: () => {} },
+                    { type: EOnboardingButtonType.SUBMIT, onClick: onSubmit },
+                  ]
+            }
           >
             <StepName />
           </OnboardingStep>
@@ -251,10 +272,10 @@ const Onboarding = () => {
         >
           <OnboardingStep
             headline={t('onboarding.review.headline')}
-            buttons={[
+            buttons={showButtons ?[
               { type: EOnboardingButtonType.BACK, onClick: () => scrollToStep(3) },
               { type: EOnboardingButtonType.SUBMIT, onClick: onSubmit },
-            ]}
+            ]: []}
           >
             <StepSummary />
           </OnboardingStep>
