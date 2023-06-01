@@ -1,0 +1,134 @@
+{
+  "languages": {
+    "en": "Englisch",
+    "de": "Deutsch"
+  },
+  "onboarding": {
+    "button": {
+      "back": "Zurück",
+      "next": "Weiter",
+      "submit": "Auf geht's"
+    },
+    "intro": {
+      "headline": "Einführung",
+      "descriptionPart1": "Sequencing ist ein Ansatz, der Erkenntnisse der Neurowissenschaften, der kognitiven Verhaltenstherapie, der Lern- und Arbeitspsychologie zu einem umsetzbaren System verbindet.",
+      "descriptionPart2": "Dazu werden die täglichen Aufgaben in exklusive Blöcke mit spezifischen Merkmalen unterteilt, in funktionsfähige Teile zerlegt und in einer sich wiederholenden Weise als zeitlich begrenzte Slots in einer Sequenz abgewechselt.",
+      "descriptionPart3": "Du bist hiermit eingeladen, deine Lieblingssportarten, Hobbys und auch Hausarbeiten spielerisch in deinen Arbeitsprozess zu integrieren.",
+      "descriptionPart4": "Durch die Abwechslung der Aktivitäten, die damit verbundenen unterschiedlichen kognitiven Modi und die Nutzung von Zeitvorgaben wirst du eine unmittelbare Steigerung von Motivation, Produktivität und Wohlbefinden spüren.",
+      "descriptionPart5": "Wir möchten betonen, dass der Inhalt dieser Blöcke ganz dir überlassen bleibt, ebenso wie die zeitlichen Vorgaben, die du selbst festlegst. Im folgenden Prozess findest du drei verschiedene Arche-Typen für die Erstellung von Sequenzen mit kürzeren oder längeren Arbeits- und Aktivitätsblöcken. Letztendlich stellen wir uns das Sequencing aber sehr individuell vor und laden dich dazu ein, verschiedene Zeitpläne auszuprobieren, um deinen persönlichen Stil zu finden."
+    },
+    "arrangement": {
+      "headline": "Anordnung",
+      "description": "Zu Beginn kannst du die Reihenfolge der einzelnen Blöcke definieren. Die unten stehende Reihenfolge empfehlen wir. Nichtsdestotrotz, kannst du die Anordnung auch durch ziehen und loslassen (drag&drop) verändern.",
+      "activity": "Dieser Block beinhaltet physische & kooridnative Einheiten um den Körper zu aktiveren und dein Gehirn mit Sauerstoff zu versorgen. Beispiele wären (dynamisches) Dehnen, Yoga oder Tai-Chi.",
+      "mental": "Hier richtest du deine Aufmerksamkeit nach Innen für Reflektionen, Meditationen oder um einen mentalen Rahmen für die nächsten Aufgaben zu setzen. Fokus- und Atem-Meditationen oder Affirmationen sind Beispiele hierfür.",
+      "deepwork": "In diesem Abschnitt arbeitest du ohne jegliche Ablenkung an deinen geplanten Aufgaben, um mit deinen Verstand in einen Flow zu gelangen. Dies kann sein in der Arbeit, für private Projekte oder zum Lernen (von z.B. Sprachen)."
+    },
+    "duration": {
+      "headline": "Dauer",
+      "description": "Jetzt definieren wir die Länge jedes einzelnen Blocks. Du kannst entweder eine Voreinstellung auswählen oder alles individuell anpassen.",
+      "individual": "Individuell"
+    },
+    "physical-activities": {
+      "headline": "Physische Aktivitäten"
+    },
+    "physical-priorities": {
+      "headline": "Prioritäten physischer Aktivitäten"
+    },
+    "mental-activities": {
+      "headline": "Mentale Aktivitäten"
+    },
+    "mental-priorities": {
+      "headline": "Prioritäten mentaler Aktivitäten"
+    },
+    "naming": {
+      "headline": "Name",
+      "description": "Du hast die Möglichkeit mehrere eigene Sequenzen zu erstellen. Deswegen ist es sinnvoll einen eindeutigen Namen zu vergeben:",
+      "placeholder": "\"Meine erste Sequence\""
+    },
+    "review": {
+      "headline": "Deine erste Sequence",
+      "recap": "Recap-Block nach Deep-Work-Block hinzufügen (empfohlen)"
+    }
+  },
+  "home": {
+    "heading": "Verwalte deine Sequenzen",
+    "heading-active": "Genieße deine Sequenz",
+    "chooseRep": "Wähle eine ganze Sequenze oder nur einen Teil:",
+    "scheduleBreak": "Plane eine Pause am Ende ein",
+    "startNow": "Jetzt starten",
+    "cancle": "Abbrechen",
+    "sequence": {
+      "select-placeholder": "Wähle eine Sequenz",
+      "or": "oder",
+      "create": "Erstelle eine Sequence"
+    },
+    "totalDuration": "Gesamtzeit: {{time}}",
+    "scheduleSequence": {
+      "label": "Sequenze planen",
+      "tooltip": "~ Wait for it ~<br />Hier kannst du bald deine Sequenzen für den Tag zeitlich einplanen."
+    },
+    "dynamicTasking": {
+      "label": "Dynamic tasking",
+      "tooltip": "~ Wait for it ~<br />Hier erhältst du bald spontane Einheiten ohne eine Sequenz gestart zu haben."
+    }
+  },
+  "now-block": {
+    "snooze": "1min Schlummern",
+    "extend": "1min Verlängern"
+  },
+  "category": {
+    "work": "Deep Work",
+    "activity": "Bewegung",
+    "mental": "Mental",
+    "break": "Pause",
+    "recap": "Recap"
+  },
+  "activities": {
+    "pushUps": "Liegestütze",
+    "taiChi": "Thai Chi",
+    "juggling": "Jonglieren",
+    "dancing": "Tanzen",
+    "chore": "Haushaltsarbeit",
+    "guitar": "Gitarre spielen",
+
+    "boxBreathing": "4x4 Atmung",
+    "qiGong": "Qi-Gong",
+    "meditation": "Meditation",
+    "gratitude": "Dankbarkeit",
+    "mantras": "Mantra sprechen"
+  },
+  "header": {
+    "dashboard": "Übersicht",
+    "createSequence": "Sequenz erstellen",
+    "waitForIt": "Wait-for-it Liste",
+    "website": "Webseite"
+  },
+  "dashboard": {
+    "heading": "Übersicht",
+    "comingSoonText": "In Zukunft kannst du hier deinen Fortschritt verfolgen. Unter anderem wird diese Seite eine Übersicht deiner abgeschlossenen Sequenzen & Einheiten beinhalten."
+  },
+  "waitForItList": {
+    "heading": "Wait-For-It Liste",
+    "description": "Auf dieser Seite findest du eine Liste mit allen Funktionen die bereits integriert wurde, sowie eine Liste mit Funktionen, welche in Zukunft noch kommen werden.",
+    "done": {
+      "heading": "Erledigt",
+      "sequenceControlPanel": "Sequenze-Verwaltung",
+      "sequenceDefinitionFlow": "Sequenz-Erstellungs-Ablauf",
+      "waitForItList": "Wait-for-it Liste"
+    },
+    "soon": {
+      "heading": "Bald",
+      "dashboard": "Übersichtsseite",
+      "sequenceScheduler": "Sequenz-Planer",
+      "dynamicTasking": "Dynaming tasking",
+      "extendedSequenceControl": "Erweiterte Sequenz-Kontrolle"
+    }
+  },
+  "waitForIt": "Wait for it ...",
+  "infoPopup": {
+    "descriptionPart1": "Im Moment stellt dieses Tool nur einen kleinen Ausschnitt der Funktionalität dar, die für unser zukünftiges Produktuniversum geplant ist. Die auf unserer Website beschriebenen Ideen sind bereits konzeptionell weiterentwickelt worden und wir freuen uns bei Interesse zu unseren Fortschritten über eine Nachricht per Kontaktformular.",
+    "descriptionPart2": "Dieses Tool ist nicht für die Verwendung auf Smartphones gedacht. Bitte verwende es nur auf einem Computer/Laptop. Eine Smartphone-kompatible Version wird bald folgen.",
+    "buttonText": "Ich verstehe"
+  }
+}
